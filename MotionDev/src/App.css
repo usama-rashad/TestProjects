@@ -1,0 +1,13 @@
+body {
+    margin: 0px;
+}
+
+.App__Main{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 200vh;
+    background-color: rgb(205, 166, 241);
+}

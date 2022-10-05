@@ -1,0 +1,29 @@
+.advertCarousel__Main{
+    margin-top          : 20px;
+    width               : 80vw;
+    height              : 80vh;
+    background-color    : blueviolet;
+    border-radius       : 10px;
+    border              : 3px solid violet;
+
+
+    /*Layout*/
+    display             : flex;
+    flex-direction      : column;
+    justify-content     : center;
+    align-items: center;
+
+    overflow: hidden ;
+}
+
+.advertCarousel_Tile{
+    width               : 80%;
+    height              : 80%;
+    background-color    : lightgreen;
+    border-radius       : 10px;
+    border              : 3px solid green;
+}
+
+.move__Button{
+    margin-top: 10px;
+}
