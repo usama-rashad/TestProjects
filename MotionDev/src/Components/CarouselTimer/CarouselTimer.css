@@ -1,0 +1,47 @@
+.timer__Main {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 1rem;
+  background-color: green;
+  border: 3px solid greenyellow;
+  width: 30%;
+  height: 10rem;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 1rem;
+}
+
+.timer__time {
+  color: greenyellow;
+}
+
+.timer__buttons {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.timer__Title {
+  display: flex;
+  flex-direction: row-reverse;
+  -moz-column-gap: 25px;
+       column-gap: 25px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.redCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: red;
+}
+
+.greenCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: yellow;
+}/*# sourceMappingURL=CarouselTimer.css.map */
