@@ -5,7 +5,8 @@ import {animate} from 'motion'
 import "../AddCarousel/AdvertCarousel.css"
 
 type carouselProps = {
-  moveTrigger? : () => boolean;
+  slideshowPictureURLS  : string[];
+  moveTrigger?          : () => boolean;
 }
 
 function AdvertCarousel  (props : carouselProps){
@@ -27,32 +28,29 @@ function AdvertCarousel  (props : carouselProps){
   }
 
 
-
+  /* Motion loader */
   useEffect(()=>{
     if(move)
     {
       console.log("Moving to x=-100")
       animate(".advertCarousel_Tile",
-      { x: -100},
+      { x: -1095},
       { duration: 0.5 })
     }
     else
     {
       console.log("Moving to x=100")
       animate(".advertCarousel_Tile",
-      { x: 100},
+      { x: 0},
       { duration: 0.5 })
     }
   },[move])
-
-  
-
 
 
   return (
     <div className='advertCarousel__Main'>
         <div className="advertCarousel_Tile"> 
-        <CarouselTimer interval={1} output={setInMotion}/>         
+        <CarouselTimer interval={5} output={setInMotion}/>         
         </div>
     </div>
   )

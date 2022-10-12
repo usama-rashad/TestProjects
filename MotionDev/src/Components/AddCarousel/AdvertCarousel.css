@@ -8,14 +8,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
 .advertCarousel_Tile {
-  width: 70%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   background-color: lightsalmon;
-  border-radius: 10px;
 }
 
 .move__Button {

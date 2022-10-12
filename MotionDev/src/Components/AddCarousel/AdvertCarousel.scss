@@ -11,17 +11,18 @@
     display             : flex;
     flex-direction      : column;
     justify-content     : center;
-    align-items: center;
+    align-items         : center;
+    box-sizing          : border-box;   // Include the border width in the dimensions => No bleeding
 
 
     overflow            : hidden ;      // Makes the carousel tile go invisible when it leaves the carousel bounds
 }
 
 .advertCarousel_Tile{
-    width               : 70%;
-    height              : 90%;
+    width               : 100%;
+    height              : 100%;
     background-color    : lightsalmon;
-    border-radius       : 10px;
+    //border-radius       : 10px;
 }
 
 .move__Button{
