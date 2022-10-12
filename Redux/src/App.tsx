@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
-import './App.css'
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import "./App.css";
 
+function App() {
+  const add = () => {
+    useDispatch();
+  };
 
-function App() { 
-
+  const sub = () => {};
 
   return (
     <div className="App">
-      <div className="App_Buttons">
-        <button>Change slide</button>
-        <button>Reset slide</button>
-      </div>
-      <div className="App_Text">
-      </div>
+      <button onClick={add}>Add</button>
+      <button onClick={sub}>Sub</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
