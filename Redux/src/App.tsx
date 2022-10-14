@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import "./App.css";
-
-import "../src/Redux/Slice/counterSlice";
-
-interface add<in1 = number, in2 = number> {}
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import counterSlice, { incremented, decremented } from "./features/counterSlice";
 
 function App() {
-  const add = () => {};
+  const count = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
 
-  const sub = () => {};
+  function add() {
+    dispatch(incremented());
+  }
 
   return (
     <div className="App">
       <button onClick={add}>Add</button>
-      <button onClick={sub}>Sub</button>
+      <h2>{count}</h2>
     </div>
   );
 }
