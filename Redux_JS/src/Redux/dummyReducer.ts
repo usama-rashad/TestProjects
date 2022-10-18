@@ -24,10 +24,16 @@ const dummySlice = createSlice({
   initialState,
   reducers: {
     modify(state: dummyObject, action: PayloadAction<dummyObject>) {
-      state = action.payload;
+      state.name = action.payload.name;
+      state.value = action.payload.value;
+      state.signature.date = action.payload.signature.date;
+      state.signature.token = action.payload.signature.token;
     },
+    updateName(state : dummyObject, action : PayloadAction<string>) {
+      state.name = action.payload;
+    }
   },
 });
 
 export const dummyReducer = dummySlice.reducer;
-export const { modify } = dummySlice.actions;
+export const { modify, updateName } = dummySlice.actions;
