@@ -5,6 +5,8 @@ import "../src/Redux/store";
 import "../src/Redux/counterReducer";
 import "../src/Redux/dummyReducer";
 
+import { counterReducerState, storeDispatch } from "../src/Redux/store";
+
 import { samplePromise } from "../src/Redux/SamplePromise";
 
 const test = () => {
@@ -19,6 +21,8 @@ const test = () => {
 
 function App() {
   test();
+
+  storeDispatch(add(1234));
 
   return <div className="App"></div>;
 }

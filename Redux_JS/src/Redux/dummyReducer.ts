@@ -24,8 +24,6 @@ const initialState: dummyObject = {
 
 const dummyThunk = createAsyncThunk("create/dummyThunk", samplePromise);
 
-console.log(dummyThunk);
-
 const dummySlice = createSlice({
   name: "dummy",
   initialState,
