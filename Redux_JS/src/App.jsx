@@ -5,20 +5,20 @@ import "../src/Redux/store";
 import "../src/Redux/counterReducer";
 import "../src/Redux/dummyReducer";
 
-import delayedPromise from "./Redux/SamplePromise";
+import { samplePromise } from "../src/Redux/SamplePromise";
+
+const test = () => {
+  samplePromise(false)
+    .then((result) => {
+      console.log("Successful process..." + result);
+    })
+    .catch((err) => {
+      console.log("Failed process..." + err);
+    });
+};
 
 function App() {
-
-  let a = delayedPromise(()=>{
-    console.log("function call")
-  }).then(()=>{
-    console.log("delayed function call")
-  }).catch(()=>{
-    console.log("error function")
-  })
-
-
-
+  test();
 
   return <div className="App"></div>;
 }

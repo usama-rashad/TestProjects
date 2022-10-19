@@ -1,4 +1,7 @@
-import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, configureStore, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+
+// Dummy promise
+import { samplePromise } from "../Redux/SamplePromise";
 
 // Dummy object reducer
 interface dummyObject {
@@ -19,6 +22,10 @@ const initialState: dummyObject = {
   },
 };
 
+const dummyThunk = createAsyncThunk("create/dummyThunk", samplePromise);
+
+console.log(dummyThunk);
+
 const dummySlice = createSlice({
   name: "dummy",
   initialState,
@@ -29,10 +36,11 @@ const dummySlice = createSlice({
       state.signature.date = action.payload.signature.date;
       state.signature.token = action.payload.signature.token;
     },
-    updateName(state : dummyObject, action : PayloadAction<string>) {
+    updateName(state: dummyObject, action: PayloadAction<string>) {
       state.name = action.payload;
-    }
+    },
   },
+  extraReducers: {},
 });
 
 export const dummyReducer = dummySlice.reducer;
