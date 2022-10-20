@@ -1,30 +1,21 @@
 import { useState } from "react";
 import "./App.css";
 
+// Import Store and Reducers
 import "../src/Redux/store";
 import "../src/Redux/counterReducer";
 import "../src/Redux/dummyReducer";
 
-import { counterReducerState, storeDispatch } from "../src/Redux/store";
+// Import Components
+import ControlPanel from "./Component/ControlPanel";
+import Display from "./Component/Display";
 
-import { samplePromise } from "../src/Redux/SamplePromise";
-
-const test = () => {
-  samplePromise(false)
-    .then((result) => {
-      console.log("Successful process..." + result);
-    })
-    .catch((err) => {
-      console.log("Failed process..." + err);
-    });
-};
 
 function App() {
-  test();
-
-  storeDispatch(add(1234));
-
-  return <div className="App"></div>;
+  return <div className="App">
+    <ControlPanel/>
+    <Display/>
+  </div>;
 }
 
 export default App;
