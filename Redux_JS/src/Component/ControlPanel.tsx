@@ -12,7 +12,7 @@ const ControlPanel = () => {
     storeDispatch(sub(1));
   };
   const delayedAddCounter = () => {
-    storeDispatch(asyncAdd(1));
+    storeDispatch(asyncAdd(3));
   };
   return (
     <div className="ControlPanel_Main">

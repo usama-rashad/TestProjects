@@ -1,8 +1,8 @@
-export const samplePromise = (target: boolean) => {
+export const SamplePromise = (target: boolean) => {
   return new Promise((resolve, reject) => {
     if (target) {
       setTimeout(() => {
-        resolve(1);
+        resolve(2);
       }, 2000);
     } else {
       setTimeout(() => {

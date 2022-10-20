@@ -1,7 +1,7 @@
 import { createSlice, configureStore, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Dummy promise
-import { samplePromise } from "../Redux/SamplePromise";
+import { SamplePromise } from "../Redux/SamplePromise";
 
 // Dummy object reducer
 interface dummyObject {
@@ -22,7 +22,7 @@ const initialState: dummyObject = {
   },
 };
 
-const dummyThunk = createAsyncThunk("create/dummyThunk", samplePromise);
+const dummyThunk = createAsyncThunk("create/dummyThunk", SamplePromise);
 
 const dummySlice = createSlice({
   name: "dummy",
