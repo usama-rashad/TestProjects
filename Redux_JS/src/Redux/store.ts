@@ -4,9 +4,6 @@ import { Store } from "redux";
 import { add, counterReducer } from "./counterReducer";
 import { modify, updateName, dummyReducer } from "./dummyReducer";
 
-const store = configureStore({ reducer: { counterReducer, dummyReducer } });
+export const store = configureStore({ reducer: { counterReducer, dummyReducer } });
 
-export type appSelector = typeof 
-
-export const dispatch =  store.dispatch;
-export const counterState = store.getState().counterReducer.value;
+export const storeDispatch = store.dispatch;

@@ -1,4 +1,4 @@
-import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, configureStore, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Counter reducers
 interface CounterType {
@@ -8,6 +8,8 @@ interface CounterType {
 const initialState: CounterType = {
   value: 0,
 };
+
+const asyncAdd = createAsyncThunk("addDelayed", AsyncThunkPayloadCreator);
 
 const counterSlice = createSlice({
   name: "counter",
@@ -19,8 +21,11 @@ const counterSlice = createSlice({
     sub(state: CounterType, action: PayloadAction<number>) {
       state.value = state.value - action.payload;
     },
+    asyncAdd(state: CounterType, action: PayloadAction<number>) {
+      state.value = state.value + action.payload;
+    },
   },
 });
 
 export const counterReducer = counterSlice.reducer;
-export const { add, sub } = counterSlice.actions;
+export const { add, sub, asyncAdd } = counterSlice.actions;

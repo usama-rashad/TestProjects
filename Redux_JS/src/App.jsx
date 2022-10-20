@@ -9,13 +9,16 @@ import "../src/Redux/dummyReducer";
 // Import Components
 import ControlPanel from "./Component/ControlPanel";
 import Display from "./Component/Display";
-
+import StoreStateDisplay from "./Component/StoreStateDisplay";
 
 function App() {
-  return <div className="App">
-    <ControlPanel/>
-    <Display/>
-  </div>;
+  return (
+    <div className="App">
+      <ControlPanel />
+      <Display />
+      <StoreStateDisplay />
+    </div>
+  );
 }
 
 export default App;
