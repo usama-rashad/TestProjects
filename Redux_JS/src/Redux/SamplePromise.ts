@@ -6,7 +6,7 @@ export const SamplePromise = (target: boolean) => {
       }, 2000);
     } else {
       setTimeout(() => {
-        reject(-1);
+        reject(1);
       }, 3000);
     }
   });

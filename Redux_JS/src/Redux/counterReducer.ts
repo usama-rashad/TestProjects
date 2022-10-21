@@ -1,6 +1,6 @@
 import { createSlice, configureStore, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
-import {SamplePromise} from "../Redux/SamplePromise"
+import { SamplePromise } from "../Redux/SamplePromise";
 
 // Counter reducers
 interface CounterType {
@@ -11,8 +11,8 @@ const initialState: CounterType = {
   value: 0,
 };
 
-export const asyncAdd = createAsyncThunk("addDelayed", async ()=>{
-  let a = await SamplePromise(true).then();
+export const asyncAdd = createAsyncThunk("addDelayed", async () => {
+  let a = await SamplePromise(true).then().catch();
   return a;
 });
 
@@ -21,20 +21,25 @@ const counterSlice = createSlice({
   initialState,
   reducers: {
     add(state: CounterType, action: PayloadAction<number>) {
-      console.log("Add called")
+      console.log("Add called");
       state.value = state.value + action.payload;
     },
     sub(state: CounterType, action: PayloadAction<number>) {
       state.value = state.value - action.payload;
     },
   },
-  extraReducers : (builder) => {
-    builder.addCase(asyncAdd.fulfilled, (state,action) =>{
-      console.log("Extra reducer logged.")
+  extraReducers: (builder) => {
+    builder.addCase(asyncAdd.fulfilled, (state, action) => {
+      console.log("Async fullfilled. Payload is :" + JSON.stringify(action));
       state.value += <number>action.payload;
-    })
-    }
+    });
+    builder.addCase(asyncAdd.rejected, (state, action) => {
+      console.log("Async rejected. Payload is :" + JSON.stringify(action));
+
+      state.value += <number>action.payload;
+    });
+  },
 });
 
 export const counterReducer = counterSlice.reducer;
-export const { add, sub  } = counterSlice.actions;
+export const { add, sub } = counterSlice.actions;
