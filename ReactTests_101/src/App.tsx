@@ -1,16 +1,14 @@
 import "./App.css";
+import Basic from "./Basic";
 
-// Components
-import TestComponent from "./TestComponent";
+import {Person} from './Basic'
 
-import test from "./TestComponent2";
+const peopleData : Person[] = [{id:1,name:"John",age:22},{id:2,name:"Sasha",age:23}]
 
 function App() {
-  test();
-
   return (
     <div className="App">
-      <TestComponent />
+        <Basic {...peopleData}/>
     </div>
   );
 }
