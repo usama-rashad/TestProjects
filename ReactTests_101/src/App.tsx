@@ -8,7 +8,7 @@ const peopleData : Person[] = [{id:1,name:"John",age:22},{id:2,name:"Sasha",age:
 function App() {
   return (
     <div className="App">
-        <Basic {...peopleData}/>
+        <Basic data={peopleData}/>
     </div>
   );
 }

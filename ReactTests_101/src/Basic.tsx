@@ -1,44 +1,45 @@
 import React, { useEffect, useState } from 'react'
 
 export interface Person {
-    id      : number;
-    name    : string;
-    age     : number;
-    email?  : string;
+  id: number;
+  name: string;
+  age: number;
+  email?: string;
 }
 
+export interface BasicProps {
+  data : Person[];
+}
 
-function Basic(input: Person[]) {
-  let newPeopleData : Person[] = [];
-  const [data,setData] = useState<Person[]>([]);
+function Basic(props: BasicProps) {
+  const [data, setData] = useState<Person[]>([]);
+  let newPeopleData: Person[] = []; // This line made the difference. Looks like the double mounting does not delete the previous memory allocation inside the component.
+  console.log("Length @1:" + newPeopleData.length);
 
   useEffect(()=>{
-    // Create a new data array 
-    let data : Person[] = Object.values(input);
-    let size : number = Object.values(input).length;
 
-    console.log("Data load start." + JSON.stringify(data));
-    for(let index=0;index<size;index++)
-    {
-        let {id,name,email} = input[index] as Person;
-        let newEmail = name + "@gmail.com"
-        newPeopleData.push({id:id,name:name,email:newEmail} as Person)
-    }
-    setData(newPeopleData);
-    console.log("Data loaded." + JSON.stringify(data));
-    return ()=>{
-        console.log("Data deleted." + JSON.stringify(data));
-    }
+      for(let i=0;i<props.data.length;i++)
+      {
+          let newEmail = props.data[i].name + "@gmail.com"
+          newPeopleData.push({ id: props.data[i].id, name: props.data[i].name, email: newEmail } as Person)
+      }
+      setData(newPeopleData);
+      console.log("Ready.");
+      console.log("Length @2:" + newPeopleData.length);
+      return ()=>{
+        setData([])
+        console.log("Deleted");
+        console.log("Length @3:" + newPeopleData.length);
+      }
   },[]);
-
-
+  
   return (
     <div>
-        {data.map((unit)=>{
-            return (
-                <h1 >{unit.name},age:{unit.age},email:{unit.email}</h1>
-            )
-        })}
+      {data.map((unit) => {
+        return (
+          <h1 key={unit.id}>{unit.name},age:{unit.age},email:{unit.email}</h1>
+        )
+      })}
     </div>
   )
 }
