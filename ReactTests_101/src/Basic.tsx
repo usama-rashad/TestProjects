@@ -13,10 +13,10 @@ export interface BasicProps {
 
 function Basic(props: BasicProps) {
   const [data, setData] = useState<Person[]>([]);
-  let newPeopleData: Person[] = []; // This line made the difference. Looks like the double mounting does not delete the previous memory allocation inside the component.
-  console.log("Length @1:" + newPeopleData.length);
 
   useEffect(()=>{
+    let newPeopleData: Person[] = []; // This line made the difference. Looks like the double mounting does not delete the previous memory allocation inside the component.
+    console.log("Length @1:" + newPeopleData.length);
 
       for(let i=0;i<props.data.length;i++)
       {
