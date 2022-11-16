@@ -1,22 +1,18 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
-let darkModeFlag: boolean = false;
+export const DarkModeContext = createContext<boolean>(false);
 
-export const DarkModeContext = createContext(darkModeFlag);
+export const DarkModeRender = () => {
+  const [val, setVal] = useState<boolean>();
 
-interface IDarKModeToggle {
-  toggleAction: () => void;
-  darkModeFlag: boolean;
-}
-
-export const DarkModeToggle = (props: IDarKModeToggle) => {
-  const [darkModeFlag, setDarkModeFlag] = useState(false);
-
-  props.toggleAction = () => {
-    console.log("Mode has been toggled");
+  const toggleMode = () => {
+    setVal(!val);
   };
-
-  useEffect(() => {
-    props.darkModeFlag = darkModeFlag;
-  }, [darkModeFlag]);
+  return (
+    <div>
+      <DarkModeContext.Provider value={val as boolean}>
+        <button onClick={toggleMode}>Click</button>
+      </DarkModeContext.Provider>
+    </div>
+  );
 };
