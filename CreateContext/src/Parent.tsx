@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-function Parent() {
-  useEffect(() => {}, []);
+interface IProps {
+  children: React.ReactNode;
+}
+
+function Parent({ children }: IProps) {
+  const [data, setData] = useState<React.ReactNode>();
+
+  useEffect(() => {
+    setData(children);
+    console.log(children);
+  }, []);
 
   return <div>{children}</div>;
 }
