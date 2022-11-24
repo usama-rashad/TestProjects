@@ -113,6 +113,6 @@ app.delete("/api/users/:userId", verify, (req, res) => {
 });
 
 // API call
-app.listen(3000, () => {
+app.listen(3020, () => {
   console.log("API has been started.");
 });
