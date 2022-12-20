@@ -22,3 +22,22 @@ console.log("Sorting data with " + sortedData.length + " elements...");
 
 // Call program 1
 test1({name: "usama", city: "lahore", country: "pakistan"});
+
+type TPromise = {
+	response: number;
+};
+
+// Promise test
+const remoteData = (value: number) =>
+	new Promise<TPromise>((resolve, reject) => {
+		if (value === 1) resolve({response: 123});
+		else reject({response: 111});
+	});
+
+remoteData(0)
+	.then((res) => {
+		console.log("Succeeded with value " + JSON.stringify(res));
+	})
+	.catch((err) => {
+		console.log("Failed with value " + JSON.stringify(err));
+	});

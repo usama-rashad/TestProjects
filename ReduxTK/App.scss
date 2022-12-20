@@ -1,0 +1,12 @@
+* {
+	font-family: "Balsamiq Sans", cursive;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	span {
+		font-size: 36px;
+		font-weight: 600;
+	}
+}
