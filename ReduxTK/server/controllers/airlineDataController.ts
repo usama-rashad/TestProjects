@@ -1,7 +1,22 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
+import { Airlines } from "./../database/dbTables";
 
-const airlineDataController = (req: Request, res: Response) => {
-	return res.status(200).send("Welcome to the Airline Data endpoint");
+export interface IAirlineData {
+  airlineName: string;
+  fleet: {
+    aircraftType: string;
+    qty: number;
+  }[];
+}
+
+const home = (req: Request, res: Response) => {
+  return res.status(200).send("Welcome to the Airline Data endpoint");
 };
 
-export {airlineDataController};
+const getAirlineData = (req: Request, res: Response) => {};
+
+const setAirlineData = (req: Request, res: Response) => {
+  let data: IAirlineData = req.body;
+};
+
+export { home, getAirlineData, setAirlineData };
