@@ -4,9 +4,9 @@ const airlineDataRouter = express.Router();
 require("dotenv").config();
 
 import {
-  home,
-  getAirlineData,
-  setAirlineData,
+	home,
+	getAirlineData,
+	setAirlineData,
 } from "../controllers/airlineDataController";
 
 airlineDataRouter.get("/", home);
