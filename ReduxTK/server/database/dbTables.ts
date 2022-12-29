@@ -1,18 +1,19 @@
-import { dbDataSource } from "./dbConnection";
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {dbDataSource} from "./dbConnection";
+import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
 
 // Airline basic info
 @Entity()
 export class Airlines {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-  @Column()
-  name: string;
+	@Column()
+	name: string;
 
-  @Column()
-  iconURL: string;
+	@Column()
+	iconURL: string;
 
-  @Column()
-  airlineHub: string;
+	@Column()
+	airlineHub: string;
 }
+

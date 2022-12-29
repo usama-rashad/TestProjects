@@ -7,7 +7,7 @@ export interface IAirlineData {
 	airlineName: string;
 	airlineHub: string;
 	iconURL: string;
-	fleet: {
+	fleet?: {
 		aircraftType: string;
 		qty: number;
 	}[];
@@ -17,14 +17,17 @@ const home = (req: Request, res: Response) => {
 	return res.status(200).send("Welcome to the Airline Data endpoint");
 };
 
-const getAirlineData = (req: Request, res: Response) => {
+const getAirlineData = async (req: Request, res: Response) => {
 	let data: IAirlineData[];
-	let dbResult = dbDataSource.getRepository("FlightPlanner").find();
+	let dbResult = await dbDataSource
+		.getRepository("FlightPlanner")
+		.query(`SELECT id, name	FROM public.airlines;`);
 	return res.status(200).send(dbResult);
 };
 
 const setAirlineData = async (req: Request, res: Response) => {
 	let data: IAirlineData = req.body;
+	console.log(data);
 
 	// First find a previous entry by airline name. If the entry exists then return an error otherwise continue with saving
 	let results = await dbDataSource
@@ -44,8 +47,9 @@ const setAirlineData = async (req: Request, res: Response) => {
 				return res.status(200).send("Data saved to database.");
 			})
 			.catch((err) => {
+				console.log("Error");
 				return res
-					.status(404)
+					.status(405)
 					.send("Error while saving to database. Err : " + err);
 			});
 	} else {
