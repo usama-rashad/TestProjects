@@ -7,12 +7,14 @@ function submitForm(e) {
 	e.preventDefault();
 	const name = document.getElementById("name");
 	const files = document.getElementById("files");
+	console.log("File tag : " + JSON.stringify(files));
 	const formData = new FormData();
 	formData.append("name", name.value);
-	for (let i = 0; i < files.files.length; i++) {
-		formData.append("files", files.files[i]);
-	}
-	fetch("http://localhost:5000/upload_files", {
+	for (let i = 0; i < files.files.length; i++) {}
+	formData.append("file", files.files[0]);
+
+	console.log(...formData);
+	fetch("http://localhost:3000/", {
 		method: "POST",
 		body: formData,
 		headers: {
