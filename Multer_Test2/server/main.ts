@@ -1,13 +1,16 @@
 import {diskStorage} from "multer";
 import {Request, Response} from "express";
 const express = require("express");
-const bodyparser = require("body-parser");
 const cors = require("cors");
+const bodyparser = require("body-parser");
+
 const multer = require("multer");
 const app = express();
 
+app.use(cors());
+
 app.use(bodyparser.json());
-app.use(cors({origin: true}));
+// app.use(bodyparser.urlencoded({extended: true}));
 
 let fileCounter: number = 0;
 

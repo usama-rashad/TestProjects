@@ -9,6 +9,7 @@ function App() {
 		null
 	) as React.MutableRefObject<HTMLInputElement>;
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
+	const [uploadSpeed, setUploadSpeed] = useState<number>(0);
 	const [uploadComplete, setUploadComplete] = useState<boolean>(false);
 
 	const fileSubmitAction = () => {
@@ -20,7 +21,7 @@ function App() {
 			formData.append("file", fileRef.current.files[0]);
 			// Axios call
 			axios({
-				url: "http://127.0.0.1/3000/",
+				url: "http://127.0.0.1:3000/",
 				data: formData,
 				method: "post",
 				headers: {"Access-Control-Allow-Origin": "true"},
@@ -48,6 +49,7 @@ function App() {
 			<input ref={fileRef} type="file" name="file" />
 			<button onClick={fileSubmitAction}>Upload</button>
 			<h2>{uploadProgress} %</h2>
+			<h2>{uploadSpeed} MBps</h2>
 		</div>
 	);
 }
