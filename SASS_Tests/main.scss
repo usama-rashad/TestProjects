@@ -1,0 +1,11 @@
+$colors: (
+	main: red,
+	sub: blue,
+);
+
+@each $name, $color in $colors {
+	.#{$name} {
+		color: ($color);
+	}
+}
+
