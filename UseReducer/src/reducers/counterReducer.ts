@@ -1,41 +1,37 @@
+// A reducer needs a state which changes over different actions
+
+export enum CounterActions {
+	Add,
+	Subtract,
+}
+export interface ICounterActions {
+	action: CounterActions;
+}
+
 interface ICounterReducerState {
-  value: number;
+	value: number;
 }
 
-// Action types
-export enum ECounterActionTypes {
-  Add,
-  Sub,
-}
+export const CounterInitialState: ICounterReducerState = {value: 0};
 
-interface ICounterActions {
-  action: ECounterActionTypes;
-}
-
-export const counterInitialState: ICounterReducerState = { value: 0 };
-
-export const counterReducer = (
-  state: ICounterReducerState,
-  action: ICounterActions
+const CounterReducer = (
+	state: ICounterReducerState,
+	action: ICounterActions
 ) => {
-  switch (action.action) {
-    case ECounterActionTypes.Add:
-      setTimeout(() => {
-        action.action = ECounterActionTypes.Sub;
-        // return { ...state };
-      }, 1000);
-      return {
-        ...state,
-        value: state.value + 1,
-      };
-      break;
-    case ECounterActionTypes.Sub:
-      return {
-        ...state,
-        value: state.value - 1,
-      };
-      break;
-  }
+	switch (action.action) {
+		case CounterActions.Add:
+			return {
+				...state,
+				value: state.value + 1,
+			};
+			break;
+		case CounterActions.Subtract:
+			return {
+				...state,
+				value: state.value - 1,
+			};
+			break;
+	}
 };
 
-export {};
+export {CounterReducer};

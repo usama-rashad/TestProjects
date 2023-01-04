@@ -1,32 +1,30 @@
-import React, { useReducer } from "react";
+import React, {useReducer} from "react";
+import "./App.scss";
 import {
-  ECounterActionTypes,
-  counterInitialState,
-  counterReducer,
+	CounterActions,
+	CounterInitialState,
+	CounterReducer,
 } from "./reducers/counterReducer";
 
 function App() {
-  const [state, dispatch] = useReducer(counterReducer, counterInitialState);
-
-  const addAction = () => {
-    dispatch({ action: ECounterActionTypes.Add });
-  };
-  const delayedAddAction = () => {
-    setTimeout(() => {
-      dispatch({ action: ECounterActionTypes.Add });
-    }, 3000);
-  };
-  const subAction = () => {
-    dispatch({ action: ECounterActionTypes.Sub });
-  };
-  return (
-    <div className="app">
-      <span>{`Current state : ${JSON.stringify(state)}`}</span>
-      <button onClick={addAction}>Add 1</button>
-      <button onClick={subAction}>Sub 1</button>
-      <button onClick={delayedAddAction}>Delayed Add</button>
-    </div>
-  );
+	const [state, dispatch] = useReducer(CounterReducer, CounterInitialState);
+	return (
+		<div className="app">
+			<h2>{state.value}</h2>
+			<div
+				className="add"
+				onClick={() => {
+					dispatch({action: CounterActions.Add});
+				}}
+			/>
+			<div
+				className="sub"
+				onClick={() => {
+					dispatch({action: CounterActions.Subtract});
+				}}
+			/>
+		</div>
+	);
 }
 
 export default App;
