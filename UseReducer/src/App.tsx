@@ -1,32 +1,94 @@
-import React, { useReducer } from "react";
-import {
-  ECounterActionTypes,
-  counterInitialState,
-  counterReducer,
-} from "./reducers/counterReducer";
+import React from "react";
+import useReducerWithThunk from "use-reducer-thunk";
+
+function reducer(state: any, action: any) {
+	switch (action.type) {
+		case "INCREMENT":
+			return {
+				...state,
+				count: state.count + 1,
+			};
+		case "DECREMENT":
+			return {
+				...state,
+				count: state.count - 1,
+			};
+		case "SUCCESS":
+			return {
+				...state,
+				loading: false,
+			};
+		case "LOADING":
+			return {
+				...state,
+				loading: true,
+			};
+		default:
+			return state;
+	}
+}
 
 function App() {
-  const [state, dispatch] = useReducer(counterReducer, counterInitialState);
+	const [state, dispatch] = useReducerWithThunk(
+		reducer,
+		{count: 0, loading: false},
+		"example"
+	);
 
-  const addAction = () => {
-    dispatch({ action: ECounterActionTypes.Add });
-  };
-  const delayedAddAction = () => {
-    setTimeout(() => {
-      dispatch({ action: ECounterActionTypes.Add });
-    }, 3000);
-  };
-  const subAction = () => {
-    dispatch({ action: ECounterActionTypes.Sub });
-  };
-  return (
-    <div className="app">
-      <span>{`Current state : ${JSON.stringify(state)}`}</span>
-      <button onClick={addAction}>Add 1</button>
-      <button onClick={subAction}>Sub 1</button>
-      <button onClick={delayedAddAction}>Delayed Add</button>
-    </div>
-  );
+	const {count, loading} = state;
+
+	function handleIncrement() {
+		dispatch({type: "INCREMENT"});
+	}
+
+	function handleDecrement() {
+		dispatch({type: "DECREMENT"});
+	}
+
+	function asyncIncrementAction() {
+		return (dispatch, getState) => {
+			dispatch({type: "LOADING"});
+			console.log("prev state ", getState());
+
+			setTimeout(() => {
+				handleIncrement();
+				dispatch({type: "SUCCESS"});
+			}, 1000);
+		};
+	}
+
+	function asyncDecrementAction() {
+		return (dispatch, getState) => {
+			dispatch({type: "LOADING"});
+			console.log("prev state ", getState());
+
+			setTimeout(() => {
+				handleDecrement();
+				dispatch({type: "SUCCESS"});
+			}, 1000);
+		};
+	}
+
+	function handleAsyncIncrement() {
+		dispatch(asyncIncrementAction());
+	}
+
+	function handleAsyncDecrement() {
+		dispatch(asyncDecrementAction());
+	}
+
+	return (
+		<div className="App">
+			<input type="number" readOnly value={count}></input>
+			<button onClick={handleAsyncIncrement} disabled={loading}>
+				Increment after 1 second
+			</button>
+			<button onClick={handleAsyncDecrement} disabled={loading}>
+				{loading ? "loading..." : "Decrement after 1 second"}
+			</button>
+			<div>{loading && "loading..."}</div>
+		</div>
+	);
 }
 
 export default App;
