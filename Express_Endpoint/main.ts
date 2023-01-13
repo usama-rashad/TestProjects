@@ -1,5 +1,6 @@
 import express, {Request, Response} from "express";
 import cors from "cors";
+import {testMiddleware} from "./middleware";
 const app = express();
 
 app.use(cors());
@@ -7,8 +8,9 @@ require("dotenv").config();
 
 let reqCount: number = 0;
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", testMiddleware, (req: Request, res: Response) => {
 	reqCount++;
+	console.log(req.user);
 	setTimeout(() => {
 		return res
 			.status(200)
