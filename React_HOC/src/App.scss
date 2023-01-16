@@ -1,0 +1,23 @@
+* {
+	font-family: "Nunito Sans", sans-serif;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+
+	.grid {
+		padding: 10px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		row-gap: 10px;
+		column-gap: 10px;
+		border-radius: 10px;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+		background-color: rgb(255, 255, 239);
+		border-color: 1px solid goldenrod;
+	}
+}
