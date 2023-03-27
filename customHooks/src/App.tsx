@@ -1,27 +1,20 @@
 import { useEffect, useState } from "react";
 import "./App.scss";
-import Button from "./Components/Button/Button";
 
-import { Observable, fromEvent, map } from "rxjs";
+import { Observable, fromEvent, map, of, from } from "rxjs";
 import * as Rx from "rxjs";
 
 function App() {
-  let inputId: HTMLInputElement;
-  useEffect(() => {
-    inputId = document.getElementById("main") as HTMLInputElement;
-    console.log(inputId);
-    fromEvent(inputId, "onChange").subscribe((message) => {
-      console.log(message);
-    });
-  }, []);
+  let obs = from([1, 2, 3]);
 
-  return (
-    <div className="App">
-      <Button variant="blue">Apply</Button>
-      <Button variant="red">Error</Button>
-      <input type="text" id="main" />
-    </div>
-  );
+  obs.subscribe((x) => {
+    console.log("Subscriber 1 : " + x);
+  });
+
+  obs.subscribe((x) => {
+    console.log("Subscriber 2 : " + x);
+  });
+  return <div className="App"></div>;
 }
 
 export default App;
