@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Button variant="blue">Apply</Button>
-      <Button variant="red">Error</Button>
+      {/* <Button variant="red">Error</Button> */}
       <input type="text" id="main" />
     </div>
   );
