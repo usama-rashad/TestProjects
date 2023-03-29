@@ -19,22 +19,25 @@ function App() {
   };
 
   const signOnAction = async () => {
-    const alg = "HS256";
-
-    const secret = new TextEncoder().encode("MYSECRET");
-    let JWT = await new SignJWT({ username: userName, password: pass }).setProtectedHeader({ alg }).sign(secret);
-    console.log(JWT);
-    axios.post("http://localhost:5000/checkUser", { username: userName, password: pass }).then((res) => {
-      const { message, error } = res.data;
-      if (error == "1") {
+    await axios
+      .post("http://localhost:5000/checkUser", { username: userName, password: pass })
+      .then((res) => {
+        const { message, error } = res.data;
+        if (error == "1") {
+          setAuthState("error");
+          setServerMessage(message);
+          resetState();
+        } else {
+          setAuthState("pass");
+          setServerMessage("");
+        }
+      })
+      .catch((err) => {
+        console.log(`${err}`);
         setAuthState("error");
-        setServerMessage(message);
+        setServerMessage("A system error has occured.");
         resetState();
-      } else {
-        setAuthState("pass");
-        setServerMessage("");
-      }
-    });
+      });
   };
 
   return (

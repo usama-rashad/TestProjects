@@ -1,10 +1,17 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+// JWT
+import { verify } from "jsonwebtoken";
+
+// Database
 import { DataSource } from "typeorm";
 import { User } from "../entities/users";
-import e from "express";
+import { AccessToken } from "../entities/accessTokens";
 import { createNewUser } from "./dbUserFeatures";
+
+import e from "express";
+import { RefreshToken } from "../entities/refreshTokens";
 
 let username: string;
 let password: string;
@@ -27,10 +34,10 @@ export const mySqlDb = new DataSource({
   host: "localhost",
   database: "jwt",
   port: port, // 3307 for laptop , 3306 for desktop
-  entities: [User],
+  entities: [User, AccessToken, RefreshToken],
   logging: false,
   insecureAuth: false,
-  synchronize: true,
+  synchronize: false,
 });
 
 mySqlDb
