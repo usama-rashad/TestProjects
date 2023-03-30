@@ -5,12 +5,13 @@ import { SignJWT } from "jose";
 import "./App.scss";
 import Button from "./Components/Button/Button";
 import Input from "./Components/Input/Input";
+import LoginSignupPage from "./Components/Pages/LoginSignup/LoginSignupPage";
 
 function App() {
-  const [userName, setUserName] = useState("");
-  const [pass, setPass] = useState("");
   const [serverMessage, setServerMessage] = useState("");
   const [authState, setAuthState] = useState("");
+  const [userName, setUserName] = useState("");
+  const [pass, setPass] = useState("");
 
   const resetState = () => {
     setTimeout(() => {
@@ -19,8 +20,9 @@ function App() {
   };
 
   const signOnAction = async () => {
+    console.log(userName + pass);
     await axios
-      .post("http://localhost:5000/checkUser", { username: userName, password: pass })
+      .post("http://localhost:5000/login", { username: userName, password: pass })
       .then((res) => {
         const { message, error } = res.data;
         if (error == "1") {
@@ -43,26 +45,19 @@ function App() {
   return (
     <div className="App">
       <div className={`container ${authState}`}>
-        <div className="top">
-          <span className="title">JWT</span>
-        </div>
-        <div className="middle">
-          <Input
-            placeholderText="Enter user name..."
-            textUpdate={(username) => {
-              setUserName(username);
+        <div className="loginSignup">
+          <LoginSignupPage
+            serverMessage={serverMessage}
+            loginAction={signOnAction}
+            updateUsername={(a) => {
+              setUserName(a);
             }}
-          />
-          <Input
-            placeholderText="Enter password..."
-            isHidden={true}
-            textUpdate={(password) => {
-              setPass(password);
+            updatePassword={(b) => {
+              setPass(b);
             }}
+            signupAction={() => console.log("Signup pressed")}
           />
-          <Button onClick={signOnAction} title="Login" />
         </div>
-        <div className="bottom">{serverMessage != "" && <span className="messages">{serverMessage}</span>}</div>
       </div>
     </div>
   );

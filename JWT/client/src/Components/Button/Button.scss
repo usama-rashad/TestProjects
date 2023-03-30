@@ -1,11 +1,11 @@
 .button {
-  width: 80px;
-  height: 32px;
+  width: 60px;
+  height: calc(width * 0.4);
   background-color: rgb(224, 233, 245);
   color: black;
   border: 1px solid white;
   transition: background-color 0.5s ease;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
