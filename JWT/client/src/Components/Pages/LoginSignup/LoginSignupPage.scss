@@ -5,6 +5,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 
   .top {
     flex: 2;
@@ -22,16 +24,23 @@
       user-select: none;
     }
   }
-  .middle {
+  .middleHelper {
+    flex: 4;
     width: 100%;
+  }
+  .middle {
+    position: absolute;
+    left: 0px;
+    width: 200%;
     flex: 4;
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-items: center;
+    transition: left 200ms ease;
     .middleLogin {
       display: flex;
-      width: 100%;
+      width: 200%;
       flex-direction: column;
       align-content: center;
       justify-content: center;
@@ -46,7 +55,7 @@
     }
     .middleSignup {
       display: flex;
-      width: 100%;
+      width: 200%;
       flex-direction: column;
       align-content: center;
       justify-content: center;

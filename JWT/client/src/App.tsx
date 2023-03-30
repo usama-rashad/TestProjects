@@ -12,6 +12,10 @@ function App() {
   const [authState, setAuthState] = useState("");
   const [userName, setUserName] = useState("");
   const [pass, setPass] = useState("");
+  // Signup
+  const [signupUsername, setSignupUsername] = useState("");
+  const [signupPass1, setSignupPass1] = useState("");
+  const [signupPass2, setSignupPass2] = useState("");
 
   const resetState = () => {
     setTimeout(() => {
@@ -20,9 +24,30 @@ function App() {
   };
 
   const signOnAction = async () => {
-    console.log(userName + pass);
     await axios
       .post("http://localhost:5000/login", { username: userName, password: pass })
+      .then((res) => {
+        const { message, error } = res.data;
+        if (error == "1") {
+          setAuthState("error");
+          setServerMessage(message);
+          resetState();
+        } else {
+          setAuthState("pass");
+          setServerMessage("");
+        }
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+        setAuthState("error");
+        setServerMessage("A system error has occured.");
+        resetState();
+      });
+  };
+
+  const signupAction = async () => {
+    await axios
+      .post("http://localhost:5000/createUser", { username: signupUsername, password: signupPass1, reenteredPassword: signupPass2 })
       .then((res) => {
         const { message, error } = res.data;
         if (error == "1") {
@@ -49,13 +74,22 @@ function App() {
           <LoginSignupPage
             serverMessage={serverMessage}
             loginAction={signOnAction}
+            signupAction={signupAction}
             updateUsername={(a) => {
               setUserName(a);
             }}
             updatePassword={(b) => {
               setPass(b);
             }}
-            signupAction={() => console.log("Signup pressed")}
+            updateSignupUsername={(name) => {
+              setSignupUsername(name);
+            }}
+            updateSignupPass1={(pass1) => {
+              setSignupPass1(pass1);
+            }}
+            updateSignupPass2={(pass2) => {
+              setSignupPass2(pass2);
+            }}
           />
         </div>
       </div>
