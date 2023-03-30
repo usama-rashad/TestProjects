@@ -7,10 +7,14 @@ import { AccessToken } from "../entities/accessTokens";
 export const createNewUserController = async (req: Request, res: Response, next: NextFunction) => {
   const { username, password, reenteredPassword } = req.body;
   if (dbReady) {
-    console.log(`New user creation request with ${username},${password},${reenteredPassword}`);
     // Check if the password is the same both times it is entered
     if (password !== reenteredPassword) {
       return res.status(404).json({ message: `Passwords do not match.`, error: 1 });
+    }
+
+    // Check if fields are populated
+    if (username == "" || password == "" || reenteredPassword == "") {
+      return res.status(404).json({ message: `Missing field.`, error: 1 });
     }
 
     // Check if user exists

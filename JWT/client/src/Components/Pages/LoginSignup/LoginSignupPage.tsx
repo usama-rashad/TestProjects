@@ -5,6 +5,7 @@ import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 
 interface ILoginPage {
+  bReturn: boolean;
   serverMessage: string;
   loginAction: () => void;
   signupAction: () => void;
@@ -29,6 +30,10 @@ function loginSignupPage(props: ILoginPage) {
   useEffect(() => {
     setServerMessage((prev) => (prev = props.serverMessage));
   }, [props.serverMessage]);
+
+  useEffect(() => {
+    if (props.bReturn) setMenuState(0);
+  }, [props.bReturn]);
 
   useEffect(() => {
     props.updateUsername(userName);
@@ -92,29 +97,29 @@ function loginSignupPage(props: ILoginPage) {
         <div className="middleSignup">
           <Input
             placeholderText="Username..."
-            textUpdate={() => {
-              setSignupUsername(signupUsername);
+            textUpdate={(name) => {
+              setSignupUsername(name);
             }}
           />
           <Input
             isHidden={true}
             placeholderText="Password..."
-            textUpdate={() => {
-              setSignupPass1(signupPass1);
+            textUpdate={(pass) => {
+              setSignupPass1(pass);
             }}
           />
           <Input
             isHidden={true}
             placeholderText="Re-enter password..."
-            textUpdate={() => {
-              setSignupPass2(signupPass2);
+            textUpdate={(pass) => {
+              setSignupPass2(pass);
             }}
           />
 
           <div className="buttons">
             <Button
               onClick={() => {
-                props.signupAction;
+                props.signupAction();
               }}
               title="Signup"
             />

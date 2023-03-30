@@ -16,6 +16,7 @@ function App() {
   const [signupUsername, setSignupUsername] = useState("");
   const [signupPass1, setSignupPass1] = useState("");
   const [signupPass2, setSignupPass2] = useState("");
+  const [returnFlag, setReturnFlag] = useState(false);
 
   const resetState = () => {
     setTimeout(() => {
@@ -30,7 +31,7 @@ function App() {
         const { message, error } = res.data;
         if (error == "1") {
           setAuthState("error");
-          setServerMessage(message);
+          setServerMessage(message.response.data);
           resetState();
         } else {
           setAuthState("pass");
@@ -46,24 +47,32 @@ function App() {
   };
 
   const signupAction = async () => {
+    let errResponse: any = null;
     await axios
       .post("http://localhost:5000/createUser", { username: signupUsername, password: signupPass1, reenteredPassword: signupPass2 })
       .then((res) => {
         const { message, error } = res.data;
         if (error == "1") {
           setAuthState("error");
-          setServerMessage(message);
+          setServerMessage(message.response.data);
           resetState();
         } else {
           setAuthState("pass");
           setServerMessage("");
+          setInterval(() => {
+            setReturnFlag(true);
+          }, 1000);
         }
       })
       .catch((err) => {
+        errResponse = err;
         console.log(`${err}`);
         setAuthState("error");
-        setServerMessage("A system error has occured.");
+        setServerMessage(err.response.data.message);
         resetState();
+      })
+      .finally(() => {
+        console.log(errResponse);
       });
   };
 
@@ -90,6 +99,7 @@ function App() {
             updateSignupPass2={(pass2) => {
               setSignupPass2(pass2);
             }}
+            bReturn={returnFlag}
           />
         </div>
       </div>
