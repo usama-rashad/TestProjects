@@ -1,22 +1,28 @@
-import { useEffect, useState } from "react";
-import { ACCESS_TOKEN_SECRET } from "./../secrets";
-import axios from "axios";
-import { SignJWT } from "jose";
 import "./App.scss";
+
+import { useEffect, useState, createContext } from "react";
+import axios from "axios";
+
 import Button from "./Components/Button/Button";
 import Input from "./Components/Input/Input";
-import LoginSignupPage from "./Components/Pages/LoginSignup/LoginSignupPage";
+
+interface IUserData {
+  loginUserName: string;
+  loginUserPassword: string;
+  signupUsername: string;
+  signupPassword1: string;
+  signupPassword2: string;
+}
 
 function App() {
   const [serverMessage, setServerMessage] = useState("");
   const [authState, setAuthState] = useState("");
-  const [userName, setUserName] = useState("");
-  const [pass, setPass] = useState("");
-  // Signup
-  const [signupUsername, setSignupUsername] = useState("");
-  const [signupPass1, setSignupPass1] = useState("");
-  const [signupPass2, setSignupPass2] = useState("");
   const [returnFlag, setReturnFlag] = useState(false);
+
+  const [userData, setUserData] = useState<IUserData>();
+
+  // Login and signup context
+  const LoginSignupDataContext = createContext<IUserData>({ loginUserName: "", loginUserPassword: "", signupUsername: "", signupPassword1: "", signupPassword2: "" });
 
   const resetState = () => {
     setTimeout(() => {
@@ -26,7 +32,7 @@ function App() {
 
   const signOnAction = async () => {
     await axios
-      .post("http://localhost:5000/login", { username: userName, password: pass })
+      .post("http://localhost:5000/login", { username: "", password: "" })
       .then((res) => {
         const { message, error } = res.data;
         if (error == "1") {
@@ -49,7 +55,7 @@ function App() {
   const signupAction = async () => {
     let errResponse: any = null;
     await axios
-      .post("http://localhost:5000/createUser", { username: signupUsername, password: signupPass1, reenteredPassword: signupPass2 })
+      .post("http://localhost:5000/createUser", { username: "", password: "", reenteredPassword: "" })
       .then((res) => {
         const { message, error } = res.data;
         if (error == "1") {
@@ -61,7 +67,8 @@ function App() {
           setServerMessage("");
           setInterval(() => {
             setReturnFlag(true);
-          }, 1000);
+            resetState();
+          }, 2000);
         }
       })
       .catch((err) => {
@@ -79,29 +86,9 @@ function App() {
   return (
     <div className="App">
       <div className={`container ${authState}`}>
-        <div className="loginSignup">
-          <LoginSignupPage
-            serverMessage={serverMessage}
-            loginAction={signOnAction}
-            signupAction={signupAction}
-            updateUsername={(a) => {
-              setUserName(a);
-            }}
-            updatePassword={(b) => {
-              setPass(b);
-            }}
-            updateSignupUsername={(name) => {
-              setSignupUsername(name);
-            }}
-            updateSignupPass1={(pass1) => {
-              setSignupPass1(pass1);
-            }}
-            updateSignupPass2={(pass2) => {
-              setSignupPass2(pass2);
-            }}
-            bReturn={returnFlag}
-          />
-        </div>
+        <LoginSignupDataContext.Provider value={userData as IUserData}>
+          <div className="loginSignup"></div>
+        </LoginSignupDataContext.Provider>
       </div>
     </div>
   );
