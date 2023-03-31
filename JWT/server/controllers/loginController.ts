@@ -3,7 +3,7 @@ import { sign, decode } from "jsonwebtoken";
 import { checkExistingUser, checkUserPassword } from "../database/dbUserFeatures";
 import dbReady from "../database/dbConnection";
 
-export const checkExistingUserController = async (req: Request, res: Response) => {
+export const loginController = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   if (!dbReady) {

@@ -1,7 +1,7 @@
-import { checkExistingUserController } from "../controllers/checkExistingUserController";
+import { loginController } from "../controllers/loginController";
 
 const express = require("express");
 
 export const checkExistingUserRoute = express();
 
-checkExistingUserRoute.post("/checkUser", checkExistingUserController);
+checkExistingUserRoute.post("/login", loginController);
