@@ -1,0 +1,28 @@
+.signupSection {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 5px;
+
+  .gap {
+    height: 50px;
+  }
+
+  .signUpTitle {
+    font-size: 28px;
+    font-weight: 700;
+    color: rgb(66, 16, 249);
+  }
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+  }
+}

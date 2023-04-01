@@ -13,23 +13,28 @@ export interface IUserData {
   signupUsername: string;
   signupPassword1: string;
   signupPassword2: string;
+  updateLoginUsername: (name: string) => void;
 }
 
 // Login and signup context
-export const LoginSignupDataContext = createContext<IUserData>({ loginUserName: "", loginUserPassword: "", signupUsername: "", signupPassword1: "", signupPassword2: "" });
+export let LoginSignupDataContext = createContext<IUserData | null>(null);
 
 function App() {
   const [serverMessage, setServerMessage] = useState("");
   const [authState, setAuthState] = useState("");
   const [returnFlag, setReturnFlag] = useState(false);
 
-  const [userData, setUserData] = useState<IUserData>({ loginUserName: "", loginUserPassword: "", signupUsername: "", signupPassword1: "", signupPassword2: "" });
+  const [userData, setUserData] = useState<IUserData>();
 
   const resetState = () => {
     setTimeout(() => {
       setAuthState("");
     }, 2000);
   };
+
+  useEffect(() => {
+    console.log(userData);
+  }, [userData?.loginUserName]);
 
   const signOnAction = async () => {
     await axios

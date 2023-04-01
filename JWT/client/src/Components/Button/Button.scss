@@ -4,7 +4,7 @@
   background-color: rgb(224, 233, 245);
   color: black;
   border: 1px solid white;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.2s ease;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,6 @@
   cursor: pointer;
   user-select: none;
   &:hover {
-    background-color: steelblue;
+    background-color: rgb(123, 106, 185);
   }
 }
