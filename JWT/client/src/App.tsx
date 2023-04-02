@@ -6,25 +6,18 @@ import axios from "axios";
 import Button from "./Components/Button/Button";
 import Input from "./Components/Input/Input";
 import LoginSignup from "./Components/Pages/LoginSignup/LoginSignup";
-import { ILogin, LoginContext } from "./Components/Pages/LoginSignup/loginContext";
 
 function App() {
   const [serverMessage, setServerMessage] = useState("");
   const [authState, setAuthState] = useState("");
 
   // User login data
-  let { username } = useContext(LoginContext) as ILogin;
-  let [login, setLogin] = useState<ILogin>({ username: "", password: "" });
 
   const resetState = () => {
     setTimeout(() => {
       setAuthState("");
     }, 2000);
   };
-
-  useEffect(() => {
-    console.log(username);
-  }, [username]);
 
   const signOnAction = async () => {
     await axios
@@ -82,9 +75,7 @@ function App() {
     <div className="App">
       <div className={`container ${authState}`}>
         <div className="loginSignup">
-          <LoginContext.Provider value={login!}>
-            <LoginSignup />
-          </LoginContext.Provider>
+          <LoginSignup />
         </div>
       </div>
     </div>

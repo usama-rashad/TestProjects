@@ -1,16 +1,10 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
-export interface ILogin {
+interface ILoginDataContext {
   username: string;
   password: string;
 }
 
-export const LoginContext = createContext<ILogin | null>(null);
+let LoginDataContext = createContext();
 
-export const useLoginContext = () => {
-  let loginData = useContext(LoginContext) as ILogin;
-  if (!loginData) {
-    return {} as ILogin;
-  }
-  return loginData;
-};
+// https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
