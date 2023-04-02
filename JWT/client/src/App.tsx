@@ -1,30 +1,20 @@
 import "./App.scss";
 
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import axios from "axios";
 
 import Button from "./Components/Button/Button";
 import Input from "./Components/Input/Input";
 import LoginSignup from "./Components/Pages/LoginSignup/LoginSignup";
-
-export interface IUserData {
-  loginUserName: string;
-  loginUserPassword: string;
-  signupUsername: string;
-  signupPassword1: string;
-  signupPassword2: string;
-  updateLoginUsername: (name: string) => void;
-}
-
-// Login and signup context
-export let LoginSignupDataContext = createContext<IUserData | null>(null);
+import { ILogin, LoginContext } from "./Components/Pages/LoginSignup/loginContext";
 
 function App() {
   const [serverMessage, setServerMessage] = useState("");
   const [authState, setAuthState] = useState("");
-  const [returnFlag, setReturnFlag] = useState(false);
 
-  const [userData, setUserData] = useState<IUserData>();
+  // User login data
+  let { username } = useContext(LoginContext) as ILogin;
+  let [login, setLogin] = useState<ILogin>({ username: "", password: "" });
 
   const resetState = () => {
     setTimeout(() => {
@@ -33,8 +23,8 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(userData);
-  }, [userData?.loginUserName]);
+    console.log(username);
+  }, [username]);
 
   const signOnAction = async () => {
     await axios
@@ -72,7 +62,6 @@ function App() {
           setAuthState("pass");
           setServerMessage("");
           setInterval(() => {
-            setReturnFlag(true);
             resetState();
           }, 2000);
         }
@@ -92,11 +81,11 @@ function App() {
   return (
     <div className="App">
       <div className={`container ${authState}`}>
-        <LoginSignupDataContext.Provider value={userData as IUserData}>
-          <div className="loginSignup">
+        <div className="loginSignup">
+          <LoginContext.Provider value={login!}>
             <LoginSignup />
-          </div>
-        </LoginSignupDataContext.Provider>
+          </LoginContext.Provider>
+        </div>
       </div>
     </div>
   );

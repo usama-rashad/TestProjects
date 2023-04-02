@@ -1,13 +1,17 @@
 import "./LoginSection.scss";
 import React, { useContext, useState } from "react";
-import { LoginSignupDataContext } from "../../../../App";
+
+// Contexts
+import { ILogin, useLoginContext } from "../loginContext";
+
+// Components
 import Button from "../../../Button/Button";
 import Input from "../../../Input/Input";
 
-interface ILoginSection {}
+// Hooks
 
-function LoginSection(props: ILoginSection) {
-  let { loginUserName } = useContext(LoginSignupDataContext);
+function LoginSection() {
+  let { updateUsername, updatePassword } = useLoginContext();
 
   const login = () => {
     console.log("Login pressed");
@@ -25,10 +29,16 @@ function LoginSection(props: ILoginSection) {
         isHidden={false}
         placeholderText="Enter username..."
         textUpdate={(name) => {
-          loginUserName = name;
+          updateUsername(name);
         }}
       />
-      <Input isHidden={true} placeholderText="Enter password..." textUpdate={(pass) => {}} />
+      <Input
+        isHidden={true}
+        placeholderText="Enter password..."
+        textUpdate={(pass) => {
+          updatePassword(pass);
+        }}
+      />
       <div className="buttons">
         <Button title="Login" onClick={login} />
         <Button title="Signup" onClick={signup} />

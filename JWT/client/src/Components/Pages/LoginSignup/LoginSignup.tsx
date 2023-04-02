@@ -1,15 +1,14 @@
 import "./LoginSignup.scss";
 
 import React, { useContext, useEffect, useState } from "react";
+
+// Components
 import LoginSection from "./LoginSection/LoginSection";
-import { IUserData, LoginSignupDataContext } from "../../../App";
 import SignupSection from "./SignupSection/SignupSection";
 
-interface ILoginSignup {}
+// Contexts
 
-function LoginSignup(props: ILoginSignup) {
-  const userData = useContext<IUserData>(LoginSignupDataContext);
-
+function LoginSignup() {
   return (
     <div className="loginSignup">
       <LoginSection />

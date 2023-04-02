@@ -7,7 +7,7 @@ import "./index.css";
 const router = createBrowserRouter([{ path: "/login", element: <App /> }]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <RouterProvider router={router} />
+  // </React.StrictMode>
 );
