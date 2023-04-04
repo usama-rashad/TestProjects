@@ -5,13 +5,12 @@ import axios from "axios";
 
 import Button from "./Components/Button/Button";
 import Input from "./Components/Input/Input";
-import LoginSignup from "./Components/Pages/LoginSignup/LoginSignup";
+import Login from "./Components/Login/Login";
+import { ILoginDataContext, loginDataContext } from "./Components/Login/loginDataContext";
 
 function App() {
   const [serverMessage, setServerMessage] = useState("");
   const [authState, setAuthState] = useState("");
-
-  // User login data
 
   const resetState = () => {
     setTimeout(() => {
@@ -44,7 +43,11 @@ function App() {
   const signupAction = async () => {
     let errResponse: any = null;
     await axios
-      .post("http://localhost:5000/createUser", { username: "", password: "", reenteredPassword: "" })
+      .post("http://localhost:5000/createUser", {
+        username: "",
+        password: "",
+        reenteredPassword: "",
+      })
       .then((res) => {
         const { message, error } = res.data;
         if (error == "1") {
@@ -71,12 +74,28 @@ function App() {
       });
   };
 
+  // User login context
+  const loginDataContextValue: ILoginDataContext = {
+    login: signOnAction,
+    signup: signupAction,
+    loginUsername: "",
+    loginPassword: "",
+    signupUsername: "",
+    signupPassword1: "",
+    signupPassword2: "",
+    setLoginUsername: function (name: string): void {},
+    setLoginPassword: function (password: string): void {},
+    setSignupUsername: function (name: string): void {},
+    setSignupPassword1: function (password: string): void {},
+    setSignupPassword2: function (password: string): void {},
+  };
+
   return (
     <div className="App">
       <div className={`container ${authState}`}>
-        <div className="loginSignup">
-          <LoginSignup />
-        </div>
+        <loginDataContext.Provider value={loginDataContextValue}>
+          <Login />
+        </loginDataContext.Provider>
       </div>
     </div>
   );

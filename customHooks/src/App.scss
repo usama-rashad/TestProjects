@@ -6,4 +6,17 @@
   row-gap: 10px;
   width: 100vw;
   height: 100vh;
+  .value {
+    font-size: 5rem;
+  }
+  .counter {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+  }
+
+  button {
+    background-color: lightcoral;
+  }
 }

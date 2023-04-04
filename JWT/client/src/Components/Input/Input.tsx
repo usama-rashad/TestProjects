@@ -5,6 +5,7 @@ interface IInputs {
   textUpdate: (input: string) => void;
   placeholderText: string;
   isHidden?: boolean;
+  isDisabled?: boolean;
 }
 
 function Input(props: IInputs) {
@@ -22,6 +23,7 @@ function Input(props: IInputs) {
   return (
     <div className="input">
       <input
+        disabled={props.isDisabled}
         placeholder={props.placeholderText}
         type={inputType}
         onChange={(event) => {

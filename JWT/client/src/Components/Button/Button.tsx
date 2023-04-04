@@ -8,7 +8,7 @@ interface IButton {
 
 function Button(props: IButton) {
   return (
-    <div className="button" onClick={props.onClick}>
+    <div role="button" className="button" onClick={props.onClick}>
       {props.title}
     </div>
   );
