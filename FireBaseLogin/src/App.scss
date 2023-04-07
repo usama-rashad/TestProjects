@@ -1,0 +1,75 @@
+@mixin FlexColumnCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+}
+
+.appMain {
+  @include FlexColumnCenter;
+  height: 100vh;
+  width: 100vw;
+  .container {
+    @include FlexColumnCenter;
+    justify-content: space-evenly;
+    height: 300px;
+    width: 300px;
+    border: 1px solid darkcyan;
+    border-radius: 8px;
+    .top {
+      width: 100%;
+      text-align: center;
+      .mainTitle {
+        color: darkcyan;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+    }
+    .middle {
+      @include FlexColumnCenter;
+      justify-content: space-evenly;
+      height: 60%;
+      width: 100%;
+      .loginSection {
+        @include FlexColumnCenter;
+        justify-content: space-evenly;
+        height: 100%;
+        width: 100%;
+        form {
+          @include FlexColumnCenter;
+          justify-content: space-evenly;
+          height: 60%;
+          input {
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid black;
+          }
+        }
+        button {
+          width: 100%;
+          height: 25px;
+          border-radius: 5px;
+          border: none;
+          font-weight: bold;
+          color: white;
+          transition: background-color 200ms ease;
+          background-color: rgba(0, 139, 139, 0.719);
+          &:hover {
+            background-color: rgba(0, 139, 139, 0.822);
+          }
+        }
+      }
+    }
+    .bottom {
+      .error {
+        color: red;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
