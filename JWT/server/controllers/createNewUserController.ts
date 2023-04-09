@@ -4,12 +4,18 @@ import dbReady, { mySqlDb } from "../database/dbConnection";
 import { sign } from "jsonwebtoken";
 import { AccessToken } from "../entities/accessTokens";
 
-export const createNewUserController = async (req: Request, res: Response, next: NextFunction) => {
+export const createNewUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { username, password, reenteredPassword } = req.body;
   if (dbReady) {
     // Check if the password is the same both times it is entered
     if (password !== reenteredPassword) {
-      return res.status(404).json({ message: `Passwords do not match.`, error: 1 });
+      return res
+        .status(404)
+        .json({ message: `Passwords do not match.`, error: 1 });
     }
 
     // Check if fields are populated
@@ -30,14 +36,22 @@ export const createNewUserController = async (req: Request, res: Response, next:
               next();
             })
             .catch((err) => {
-              return res.status(404).json({ message: `Failed to create new user ${username}. Error ${err}` });
+              return res
+                .status(404)
+                .json({
+                  message: `Failed to create new user ${username}. Error ${err}`,
+                });
             });
         } else {
-          return res.status(404).json({ message: `User ${username} already exists.` });
+          return res
+            .status(404)
+            .json({ message: `User ${username} already exists.` });
         }
       })
       .catch((err) => {
-        return res.status(404).json({ message: `Failed to check existing user. DB error ${err}` });
+        return res
+          .status(404)
+          .json({ message: `Failed to check existing user. DB error ${err}` });
       });
   }
 };
@@ -46,7 +60,11 @@ export async function createAccessTokenController(req: Request, res: Response) {
   let username: string = res.get("username") as string;
   let password: string = res.get("password") as string;
   // Create and store an access token with a 1 minute expiry time
-  let token = sign({ user: username, pass: password }, process.env.ACCESS_TOKEN_SECRET as unknown as string, { expiresIn: "10m" });
+  let token = sign(
+    { user: username, pass: password },
+    process.env.ACCESS_TOKEN_SECRET as unknown as string,
+    { expiresIn: "10m" }
+  );
 
   // Save the token in the database
   let newAccessToken = new AccessToken();
@@ -61,7 +79,9 @@ export async function createAccessTokenController(req: Request, res: Response) {
       return res.status(200).json({ message: `New user ${username} created.` });
     })
     .catch((err) => {
-      return res.status(500).json({ message: `Error while creating user access token.` });
+      return res
+        .status(500)
+        .json({ message: `Error while creating user access token.` });
     });
 }
 

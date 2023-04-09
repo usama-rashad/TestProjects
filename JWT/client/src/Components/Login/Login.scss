@@ -1,0 +1,89 @@
+$titleColor: darkblue;
+
+@mixin FlexCenterColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@mixin FlexCenterRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginMain {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .top {
+    flex: 2;
+    width: 100%;
+  }
+  .centerHelper {
+    flex: 10;
+    width: 200%;
+  }
+  .center {
+    flex: 10;
+    height: 100%;
+    width: 200%;
+    position: absolute;
+    top: 50px;
+    transition: left 200ms ease;
+
+    @include FlexCenterRow;
+    .left {
+      @include FlexCenterColumn;
+      justify-content: flex-start;
+      height: 100%;
+      width: 100%;
+      row-gap: 5px;
+      .loginTitle {
+        color: $titleColor;
+        font-weight: 700;
+        font-size: 2rem;
+        text-decoration: underline;
+      }
+      .buttons {
+        @include FlexCenterRow;
+        column-gap: 5px;
+      }
+    }
+    .right {
+      @include FlexCenterColumn;
+      justify-content: flex-start;
+      height: 100%;
+      width: 100%;
+      row-gap: 5px;
+      .signupTitle {
+        color: $titleColor;
+        font-weight: 700;
+        font-size: 2rem;
+        text-decoration: underline;
+      }
+      .buttons {
+        @include FlexCenterRow;
+        column-gap: 5px;
+      }
+    }
+  }
+  .bottom {
+    flex: 2;
+    width: 100%;
+    @include FlexCenterColumn;
+    .message {
+      .messageTitle {
+        color: white;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+    }
+  }
+}
