@@ -24,7 +24,7 @@ const db = getFirestore(app);
 console.log(db);
 
 async function addNewDoc(name: string, password: string) {
-  return await addDoc(collection(db, "Users"), { name, password });
+  return await addDoc(collection(db, ""), { name, password });
 }
 
 export { addNewDoc };

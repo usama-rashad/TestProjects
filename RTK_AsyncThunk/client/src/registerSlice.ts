@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addNewDoc } from "./firebase";
+import axios from "axios";
 
 interface IDocSlice {
   name: string;
@@ -9,7 +10,10 @@ interface IDocSlice {
 const DocSliceInit: IDocSlice = { name: "", password: "" };
 
 export const addDocThunk = createAsyncThunk("addDoc", async () => {
-  return await addNewDoc("usama", "password" + new Date(Date.now()));
+  return await axios.post("http://localhost:5000/api/v1/createNewUser", {
+    username: "usamakr",
+    password: new Date(Date.now()).toDateString(),
+  });
 });
 
 const docSlice = createSlice({
@@ -26,7 +30,7 @@ const docSlice = createSlice({
     });
     builder.addCase(addDocThunk.rejected, (state, actions) => {
       console.log("Request rejected...");
-      console.log(actions);
+      console.log(actions.error.message);
     });
     builder.addCase(addDocThunk.fulfilled, (state, actions) => {
       console.log("Request fullfilled...");
