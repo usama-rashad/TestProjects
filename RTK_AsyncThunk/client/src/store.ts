@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { docReducer } from "./registerSlice";
+import { pokemonReducer } from "./registerSlice";
 
 const customizedMiddleware = getDefaultMiddleware({
   serializableCheck: false,
@@ -7,7 +7,7 @@ const customizedMiddleware = getDefaultMiddleware({
 
 export const store = configureStore({
   reducer: {
-    addDoc: docReducer,
+    pokemon: pokemonReducer,
   },
   middleware: customizedMiddleware,
 });

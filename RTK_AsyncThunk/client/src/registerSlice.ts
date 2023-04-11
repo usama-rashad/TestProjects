@@ -2,42 +2,41 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addNewDoc } from "./firebase";
 import axios from "axios";
 
-interface IDocSlice {
-  name: string;
-  password: string;
+export interface IPokemonData {
+  data: {
+    pokemon: { name: string; URL: string };
+    slot: number;
+  }[];
 }
 
-const DocSliceInit: IDocSlice = { name: "", password: "" };
+const pokemonDataInit: IPokemonData = { data: [] };
 
-export const addDocThunk = createAsyncThunk("addDoc", async () => {
-  return await axios.post("http://localhost:5000/api/v1/createNewUser", {
-    username: "usamakr",
-    password: new Date(Date.now()).toDateString(),
-  });
+export const getPokemonData = createAsyncThunk("PokeData", async () => {
+  let thunk = await axios.get("http://localhost:5000/api/v1/createNewUser");
+  return thunk;
 });
 
-const docSlice = createSlice({
+const pokemonSlice = createSlice({
   name: "doc",
-  initialState: DocSliceInit,
+  initialState: pokemonDataInit,
   reducers: {
     reset(state) {
       console.log("Reset...");
     },
   },
   extraReducers(builder) {
-    builder.addCase(addDocThunk.pending, () => {
+    builder.addCase(getPokemonData.pending, () => {
       console.log("Request pending...");
     });
-    builder.addCase(addDocThunk.rejected, (state, actions) => {
+    builder.addCase(getPokemonData.rejected, (state, actions) => {
       console.log("Request rejected...");
-      console.log(actions.error.message);
     });
-    builder.addCase(addDocThunk.fulfilled, (state, actions) => {
+    builder.addCase(getPokemonData.fulfilled, (state, actions) => {
       console.log("Request fullfilled...");
-      console.log(actions);
+      state.data = actions.payload.data.pokemon;
     });
   },
 });
 
-export const docReducer = docSlice.reducer;
-export const { reset } = docSlice.actions;
+export const pokemonReducer = pokemonSlice.reducer;
+export const { reset } = pokemonSlice.actions;

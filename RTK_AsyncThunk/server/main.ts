@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
+import axios from "axios";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,10 +12,13 @@ app.get("/test", (req: Request, res: Response) => {
   return res.status(200).json({ response: "Good morning." });
 });
 
-app.post("/api/v1/createNewUser", (req: Request, res: Response) => {
-  let { username, password } = req.body;
-  console.log(`Data ${username} ${password}`);
-  return res.status(200).json("Server OK");
+app.get("/api/v1/createNewUser", async (req: Request, res: Response) => {
+  let data: any = null;
+  await axios.get("https://pokeapi.co/api/v2/type/5").then((reponse) => {
+    data = reponse.data;
+    console.log(`Data received.${new Date(Date.now()).getMinutes()}:${new Date(Date.now()).getSeconds()}`);
+  });
+  return res.status(200).json(data);
 });
 
 app.listen(5000, () => {

@@ -1,24 +1,37 @@
-import { useState } from "react";
-import { appDispatch } from "./store";
+import { useEffect, useState } from "react";
+import { RootState, appDispatch, store } from "./store";
 import "./App.scss";
-import { useDispatch } from "react-redux";
-import { addDocThunk, reset } from "./registerSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { IPokemonData, getPokemonData, reset } from "./registerSlice";
 import { addDoc } from "@firebase/firestore";
+import { useAppSelector } from "./hooks";
 
 function App() {
+  const storeState = useAppSelector((store) => store.pokemon);
   const dispatch = useDispatch<appDispatch>();
 
-  const buttonAction = () => {
-    dispatch(reset());
-  };
+  useEffect(() => {
+    console.log("State updated" + JSON.stringify(storeState));
+  }, [storeState]);
 
   const addDataAction = () => {
-    dispatch(addDocThunk());
+    dispatch(getPokemonData());
   };
   return (
     <div className="App">
-      <button onClick={buttonAction}>Reset!</button>
-      <button onClick={addDataAction}>Add Data</button>
+      <div className="buttons">
+        <button onClick={addDataAction}>Add Data</button>
+      </div>
+      <div className="results">
+        <span>Results</span>
+        <div className="page">
+          <>
+            {storeState.data.map((item, index) => {
+              return <span className="item">{item.pokemon.name}</span>;
+            })}
+          </>
+        </div>
+      </div>
     </div>
   );
 }
