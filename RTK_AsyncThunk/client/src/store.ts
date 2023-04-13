@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { pokemonReducer } from "./registerSlice";
+import { registerReducer } from "./registerSlice";
 
 const customizedMiddleware = getDefaultMiddleware({
   serializableCheck: false,
@@ -7,7 +7,7 @@ const customizedMiddleware = getDefaultMiddleware({
 
 export const store = configureStore({
   reducer: {
-    pokemon: pokemonReducer,
+    register: registerReducer,
   },
   middleware: customizedMiddleware,
 });

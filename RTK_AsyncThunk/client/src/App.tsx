@@ -1,37 +1,38 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { RootState, appDispatch, store } from "./store";
 import "./App.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { IPokemonData, getPokemonData, reset } from "./registerSlice";
+import { reset, registerThunk, IRegisterUser } from "./registerSlice";
 import { addDoc } from "@firebase/firestore";
 import { useAppSelector } from "./hooks";
 
 function App() {
-  const storeState = useAppSelector((store) => store.pokemon);
+  const [userData, setUserData] = useState<IRegisterUser>({ username: "", password: "" });
   const dispatch = useDispatch<appDispatch>();
+  const storeState = useAppSelector((state) => state);
+
+  const addUserAction = () => {
+    dispatch(registerThunk(userData));
+  };
 
   useEffect(() => {
-    console.log("State updated" + JSON.stringify(storeState));
-  }, [storeState]);
+    setUserData({ username: "usamakr@gmail.com", password: "123456798" });
+  }, []);
 
-  const addDataAction = () => {
-    dispatch(getPokemonData());
+  const updateUsername = (e: ChangeEvent<HTMLInputElement>) => {
+    return { ...userData, username: e.target.value };
   };
+
+  const updatePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    return { ...userData, updatePassword: e.target.value };
+  };
+
   return (
     <div className="App">
-      <div className="buttons">
-        <button onClick={addDataAction}>Add Data</button>
-      </div>
-      <div className="results">
-        <span>Results</span>
-        <div className="page">
-          <>
-            {storeState.data.map((item, index) => {
-              return <span className="item">{item.pokemon.name}</span>;
-            })}
-          </>
-        </div>
-      </div>
+      <input placeholder="Username" value={userData.username} onChange={updateUsername} />
+      <input placeholder="Password" value={userData.password} onChange={updatePassword} />
+      <button onClick={addUserAction}>Register</button>
+      <span className="message">{JSON.stringify(storeState)}</span>
     </div>
   );
 }

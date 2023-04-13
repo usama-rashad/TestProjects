@@ -1,7 +1,9 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import axios from "axios";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, doc, setDoc } from "firebase/firestore";
+import { auth, db } from "./firebase";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -12,15 +14,27 @@ app.get("/test", (req: Request, res: Response) => {
   return res.status(200).json({ response: "Good morning." });
 });
 
-app.get("/api/v1/createNewUser", async (req: Request, res: Response) => {
-  let data: any = null;
-  await axios.get("https://pokeapi.co/api/v2/type/5").then((reponse) => {
-    data = reponse.data;
-    console.log(`Data received.${new Date(Date.now()).getMinutes()}:${new Date(Date.now()).getSeconds()}`);
-  });
-  return res.status(200).json(data);
+app.post("/api/v1/createNewUser", async (req: Request, res: Response) => {
+  let { email, password1 } = req.body;
+  let p1 = await createUserWithEmailAndPassword(auth, email, password1)
+    .then(async () => {
+      return await setDoc(doc(db, "users"), { data: email });
+    })
+    .then((user) => {
+      return res.status(200).json({ message: user });
+    })
+    .catch((error) => {
+      return res.status(400).json({ message: error });
+    });
 });
 
 app.listen(5000, () => {
   console.log("Server started...");
 });
+
+/*
+
+The async thunk can get the correct response from the server. The correct response is available inside the 
+"payload/data" member of the action object.
+
+*/
