@@ -14,20 +14,12 @@ export interface IRegisterSlice {
 
 const registerSliceInit: IRegisterSlice = { status: "", serverError: "" };
 
-const registerThunk = createAsyncThunk("registerUser", async (userData: IRegisterUser) => {
-  let p = await new Promise<string>(async (resolve, reject) => {
-    await axios
-      .post("http://localhost:5000/api/v1/createNewUser", userData)
-      .then((response) => {
-        console.log(response);
-        resolve(response.data);
-      })
-      .catch((error) => {
-        console.log(error.response.data.message.code);
-        reject(error.message);
-      });
-  });
-  return p;
+const registerThunk = createAsyncThunk("registerUser", async (userData: IRegisterUser, thunkAPI) => {
+  try {
+    let promise = await axios.post("http://localhost:5000/api/v1/createNewUser", userData);
+  } catch (e) {
+    thunkAPI.rejectWithValue(e);
+  }
 });
 
 const registerSlice = createSlice({
@@ -42,9 +34,14 @@ const registerSlice = createSlice({
     builder.addCase(registerThunk.pending, (state, action) => {
       console.log("Request pending...");
     });
-    builder.addCase(registerThunk.rejected, (state, actions) => {});
+    builder.addCase(registerThunk.rejected, (state, actions) => {
+      console.log("Message : " + JSON.stringify(actions.error));
+    });
+
     builder.addCase(registerThunk.fulfilled, (state, actions) => {
-      console.log(actions);
+      console.log("Builder OK");
+
+      console.log(actions.payload);
     });
   },
 });
