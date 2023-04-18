@@ -1,0 +1,16 @@
+.formMain {
+  height: 150px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  input {
+    width: 90%;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+  }
+}

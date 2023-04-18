@@ -1,16 +1,15 @@
 import React from "react";
 import "./App.scss";
-import HOC from "./utils/HOC";
-import InputComponent from "./utils/InputComponent";
-import Counter from "./utils/Counter";
+import Form from "./Components/Form/Form";
+import FormWithTitle from "./Components/FormWithTitle/FormWithTitle";
 
 function App() {
-	return (
-		<div className="App">
-			<Counter />
-			<Counter />
-		</div>
-	);
+  return (
+    <div className="App">
+      <span className="title">Welcome</span>
+      <FormWithTitle master={<Form />} />
+    </div>
+  );
 }
 
 export default App;
