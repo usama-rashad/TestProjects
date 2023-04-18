@@ -1,13 +1,14 @@
 import React from "react";
 import "./App.scss";
 import Form from "./Components/Form/Form";
-import FormWithTitle from "./Components/FormWithTitle/FormWithTitle";
+import WindowUtils from "./Components/Utils/WindowUtils";
 
 function App() {
   return (
     <div className="App">
       <span className="title">Welcome</span>
-      <FormWithTitle master={<Form />} />
+      <WindowUtils />
+      <Form />
     </div>
   );
 }

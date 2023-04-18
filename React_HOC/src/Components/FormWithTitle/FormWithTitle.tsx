@@ -4,6 +4,7 @@ import React from "react";
 
 interface IProps {
   master: any;
+  inputCount: number;
 }
 
 function FormWithTitle(props: IProps) {
