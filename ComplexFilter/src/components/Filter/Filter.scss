@@ -1,0 +1,37 @@
+.mainFilter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 5px 10px 5px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px 1px rgb(52, 45, 100);
+  .filterSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .applyButton {
+    border: none;
+    background-color: darkslateblue;
+    border-radius: 3px;
+    width: 60px;
+    height: 30px;
+    color: white;
+    font-weight: 600;
+    margin-top: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 300ms ease;
+    &:hover {
+      background-color: rgb(117, 105, 194);
+    }
+    &:active {
+      background-color: rgb(36, 22, 124);
+    }
+  }
+}

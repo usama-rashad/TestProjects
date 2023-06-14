@@ -1,0 +1,59 @@
+$backgroundColor: rgb(255, 255, 255);
+$borderColor: rgb(116, 116, 255);
+
+.mainHoverButton {
+  background-color: $backgroundColor;
+  padding: 10px 16px 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid $borderColor;
+
+  .ripple {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    background-color: adjust-color($color: $borderColor, $lightness: 10%, $alpha: 1);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    z-index: 0;
+    scale: 0;
+
+    &.on1 {
+      animation-delay: 0.1s;
+      animation: ripple1 1s forwards;
+    }
+    &.on2 {
+      animation: ripple2 1s forwards;
+    }
+  }
+
+  p {
+    position: relative;
+    color: $borderColor;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0px;
+    user-select: none;
+    font-size: 14px;
+    z-index: 999;
+  }
+}
+
+@keyframes ripple1 {
+  100% {
+    // transform: scale(10);
+    scale: 10;
+    opacity: 0;
+  }
+}
+
+@keyframes ripple2 {
+  100% {
+    // transform: scale(10);
+    scale: 6;
+    opacity: 0;
+  }
+}

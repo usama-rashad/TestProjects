@@ -1,0 +1,17 @@
+$infoBarHeight: 80px;
+
+.mainPixelMap {
+  width: 100%;
+  height: calc(100vh - $infoBarHeight);
+  background-color: white;
+  box-sizing: border-box;
+  position: absolute;
+  top: $infoBarHeight;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1px;
+  column-gap: 1px;
+}

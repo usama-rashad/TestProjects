@@ -1,0 +1,24 @@
+.navbarMain {
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    column-gap: 5px;
+    button {
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      background-color: transparent;
+      height: 30px;
+      width: 80px;
+      cursor: pointer;
+
+      transition: all 200ms ease-in;
+
+      &:hover {
+        color: gold;
+      }
+    }
+  }
+}

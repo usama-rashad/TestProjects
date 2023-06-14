@@ -1,0 +1,24 @@
+.mainButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 2px 2px 10px inherit;
+
+  transition: box-shadow 300ms ease;
+  .button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  &:active {
+    box-shadow: 0px 0px 0px inherit;
+    position: relative;
+    top: 1px;
+    left: 1px;
+  }
+}

@@ -1,0 +1,28 @@
+$pixelSize: 8px;
+$magnetBorderSize: 10px;
+$factor: 5;
+
+.mainPixel {
+  width: fit-content;
+  height: fit-content;
+  .magnetBorder {
+    width: calc($magnetBorderSize * $factor);
+    height: calc($magnetBorderSize * $factor);
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // border-radius: 50%;
+    transition: background-color 500ms ease;
+    &:hover {
+      background-color: rgba(137, 43, 226, 0.247);
+    }
+    .handle {
+      width: $pixelSize;
+      height: $pixelSize;
+      background-color: blueviolet;
+      // border-radius: 50%;
+    }
+  }
+}

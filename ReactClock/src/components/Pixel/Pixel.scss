@@ -1,0 +1,21 @@
+$pixelSize: 5px;
+
+.mainPixel {
+  width: $pixelSize;
+  height: $pixelSize;
+  border-radius: 50%;
+  overflow: hidden;
+  // transition: background-color 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  &.on {
+    background-color: greenyellow;
+    box-shadow: rgb(153, 255, 0) 0px 1px 4px;
+  }
+  &.off {
+    background-color: transparent;
+  }
+
+  // &:hover {
+  //   background-color: green;
+  // }
+}

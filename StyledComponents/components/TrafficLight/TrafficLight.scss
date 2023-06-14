@@ -1,0 +1,28 @@
+.mainTrafficLight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 3px;
+  height: fit-content;
+  width: fit-content;
+
+  .red {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid red;
+  }
+  .yellow {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid yellow;
+  }
+  .green {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid green;
+  }
+}

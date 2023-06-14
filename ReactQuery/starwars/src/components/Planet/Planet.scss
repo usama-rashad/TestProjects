@@ -1,0 +1,132 @@
+@mixin flexRowCenter {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+@mixin flexColCenter {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+p {
+  font-family: "Satisfy", cursive;
+}
+
+.planetMain {
+  position: relative;
+  height: 150px;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid white;
+  @include flexRowCenter;
+  .background {
+    width: 100%;
+    height: 100%;
+    .backImage {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      z-index: 0;
+    }
+  }
+
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    @include flexColCenter;
+    .top {
+      flex: 1;
+      height: 30px;
+      @include flexRowCenter;
+      .left {
+        flex: 1;
+        padding-left: 5px;
+        padding-right: 5px;
+        @include flexRowCenter;
+        align-items: center;
+        justify-content: left;
+        img {
+          width: 24px;
+          height: auto;
+        }
+        .planetName {
+          color: black;
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+      .right {
+        flex: 1;
+        padding-left: 5px;
+        padding-right: 5px;
+        @include flexRowCenter;
+        align-items: center;
+        justify-content: right;
+        img {
+          width: 24px;
+          height: auto;
+          padding-right: 20px;
+        }
+        .popName {
+          color: black;
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+    }
+    .center {
+      @include flexRowCenter;
+      flex: 5;
+      color: black;
+      .col1 {
+        flex: 1;
+        @include flexColCenter;
+        justify-content: flex-start;
+        align-items: center;
+        .title {
+          font-weight: bold;
+        }
+        .info {
+          word-wrap: break-word;
+          font-size: 16px;
+        }
+      }
+      .col2 {
+        flex: 1;
+        @include flexColCenter;
+        justify-content: flex-start;
+        align-items: center;
+        .title {
+          font-weight: bold;
+        }
+        .info {
+          word-wrap: break-word;
+          font-size: 16px;
+        }
+      }
+      .col3 {
+        flex: 1;
+        @include flexColCenter;
+        justify-content: flex-start;
+        align-items: center;
+        .title {
+          font-weight: bold;
+        }
+        .info {
+          word-wrap: break-word;
+          font-size: 16px;
+        }
+      }
+    }
+    .bottom {
+      flex: 1;
+    }
+  }
+}

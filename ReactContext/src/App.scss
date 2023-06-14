@@ -1,0 +1,25 @@
+body {
+  margin: 0px;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.mainApp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  transition: background-color 100ms ease;
+
+  .settingsPanel {
+    padding: 10px;
+  }
+  h2 {
+    color: black;
+  }
+}
