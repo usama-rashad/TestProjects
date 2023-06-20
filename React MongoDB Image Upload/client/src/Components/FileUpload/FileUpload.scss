@@ -1,0 +1,79 @@
+.mainFileUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 5px;
+  width: 200px;
+  // form {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   row-gap: 5px;
+  //   width: 200px;
+  .fileInput {
+    align-self: center;
+    color: white;
+    border-radius: 5px;
+    height: 35px;
+    width: fit-content;
+    display: none;
+  }
+
+  .fileName {
+    color: white;
+    background-color: transparent;
+    height: 35px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: rgb(111, 111, 255);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    transition: background-color 100ms;
+
+    &:hover {
+      background-color: hsl(240, 100%, 82%);
+    }
+
+    &:active {
+      background-color: hsl(240, 100%, 72%);
+    }
+  }
+
+  .uploadButton {
+    background-color: rgb(111, 111, 255);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    transition: background-color 100ms;
+
+    &:hover {
+      background-color: hsl(240, 100%, 82%);
+    }
+
+    &:active {
+      background-color: hsl(240, 100%, 72%);
+    }
+
+    &:disabled {
+      background-color: lightgray;
+    }
+  }
+}

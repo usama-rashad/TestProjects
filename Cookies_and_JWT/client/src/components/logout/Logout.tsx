@@ -8,7 +8,7 @@ function Logout() {
 
   const deleteSessionAction = async () => {
     await axios
-      .get("http://localhost:4000/api/delete", { withCredentials: true })
+      .get("http://localhost:4000/api/logout", { withCredentials: true })
       .then((result) => {
         setMessage(result.data);
       })

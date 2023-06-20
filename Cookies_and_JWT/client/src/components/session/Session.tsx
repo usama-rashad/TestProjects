@@ -8,9 +8,9 @@ function Session() {
 
   const getSessionAction = async () => {
     await axios
-      .get("http://localhost:4000/api/refresh", { withCredentials: true })
+      .get("http://localhost:4000/api/getSession", { withCredentials: true })
       .then((result) => {
-        setSessionData(JSON.stringify(result.data));
+        setSessionData(result.data);
       })
       .catch((error) => {
         setSessionData(error.response.data);

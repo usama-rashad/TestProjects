@@ -32,7 +32,7 @@ function Login() {
     await axios
       .post("http://localhost:4000/api/login", { username: loginData.username, password: loginData.password }, { withCredentials: true })
       .then((result) => {
-        setResponse(JSON.stringify(result.data));
+        setResponse(result.data);
       })
       .catch((error) => {
         setResponse(error.response.data);
