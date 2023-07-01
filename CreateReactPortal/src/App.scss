@@ -1,0 +1,9 @@
+.mainApp {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(45deg, darkslateblue, hsl(248, 36%, 67%));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}

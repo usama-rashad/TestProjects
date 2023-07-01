@@ -1,0 +1,39 @@
+.mainApp {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+    45deg,
+    rgba(71, 61, 138, 1),
+    rgba(71, 61, 138, 0.5)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .top {
+    flex: 1;
+  }
+  .center {
+    flex: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-items: center;
+    .left {
+      flex: 2;
+      height: 100%;
+    }
+    .middle {
+      flex: 10;
+      height: 100%;
+    }
+    .right {
+      flex: 2;
+      height: 100%;
+    }
+  }
+  .bottom {
+    flex: 1;
+  }
+}

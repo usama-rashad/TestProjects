@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState = { busy: false, progressPct: 0 };
+const initialState = { progressPct: 0, busy: false };
 
-const fileUploadSlice = createSlice({
+const uploadSlice = createSlice({
   name: "upload",
   initialState: initialState,
   reducers: {
-    updateBusy(state, action) {
-      state.busy = action.status;
-    },
     updateProgress(state, action) {
-      state.progressPct = action.progress;
+      let progress = action.payload;
+      state.busy = progress !== 100;
+      state.progressPct = action.payload;
     },
   },
 });
 
-export default fileUploadReducer = fileUploadSlice.reducer;
-export const { updateBusy, updateProgress } = fileUploadSlice.actions;
+export const UploadReducer = uploadSlice.reducer;
+export const { updateProgress } = uploadSlice.actions;

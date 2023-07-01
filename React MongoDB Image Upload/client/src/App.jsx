@@ -1,9 +1,10 @@
+import { Provider } from "react-redux";
 import React from "react";
 import "./App.scss";
-import fileUploadStore from "./Components/FileUpload/fileUploadReducer";
 
 // Components
 import FileUpload from "./Components/FileUpload/FileUpload";
+import fileUploadStore from "./Components/FileUpload/fileUploadStore";
 
 function App() {
   return (

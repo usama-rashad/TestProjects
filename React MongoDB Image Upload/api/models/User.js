@@ -3,10 +3,8 @@ const Schema = _Schema;
 
 const userSchema = new Schema(
   {
-    _id: _Schema.Types.ObjectId,
-    profileImg: {
-      type: String,
-    },
+    username: String,
+    imagePath: String,
   },
   {
     collection: "users",

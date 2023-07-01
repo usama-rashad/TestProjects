@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import fileUploadReducer from "./fileUploadReducer.js";
+import { UploadReducer } from "./fileUploadReducer";
 
-export const fileUploadStore = configureStore({
+const fileUploadStore = configureStore({
   reducer: {
-    fileUpload: fileUploadReducer,
+    upload: UploadReducer,
   },
 });
+
+export default fileUploadStore;

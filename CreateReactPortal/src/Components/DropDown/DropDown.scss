@@ -1,0 +1,16 @@
+.mainDropDown {
+  height: 0px;
+  width: 10%;
+  border: none;
+  transition: height 100ms, opacity 100ms;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px 0px 10px 10px;
+  &.on {
+    height: 100px;
+    opacity: 1;
+  }
+  &.off {
+    height: 0px;
+    opacity: 0;
+  }
+}
