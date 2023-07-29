@@ -1,0 +1,11 @@
+.mainMultiDiv {
+  width: 200px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 5px;
+  background-color: transparent;
+  scroll-behavior: smooth;
+}

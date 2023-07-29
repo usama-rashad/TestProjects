@@ -1,4 +1,8 @@
-let testString = "My name is nana nana ";
-let regex = /n/g;
+let regex = /\d/g;
+let string = "letter1";
 
-console.log(testString.match(regex));
+let matches = string.matchAll(regex);
+
+for (let match of matches) {
+  console.log(match);
+}

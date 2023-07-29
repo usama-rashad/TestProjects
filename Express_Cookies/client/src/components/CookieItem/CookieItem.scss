@@ -1,0 +1,14 @@
+.mainCookieItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
+  height: 30px;
+  width: 100%;
+  padding-left: 20px;
+  p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

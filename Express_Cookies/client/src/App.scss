@@ -1,0 +1,22 @@
+.mainApp {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(117, 0, 196);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 10px;
+  p {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+  }
+  .cookieData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
