@@ -1,0 +1,46 @@
+.mainSignup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 3px;
+  width: 200px;
+  height: 150px;
+  background-color: white;
+
+  .authActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    button {
+      width: 80px;
+    }
+  }
+  .statusPoints {
+    width: 80%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      height: 30px;
+      width: 100%;
+      margin: 0px;
+      align-self: flex-start;
+    }
+
+    .error {
+      font-weight: bold;
+      font-size: 14px;
+      color: red;
+    }
+    .message {
+      font-weight: bold;
+      font-size: 14px;
+      color: green;
+    }
+  }
+}

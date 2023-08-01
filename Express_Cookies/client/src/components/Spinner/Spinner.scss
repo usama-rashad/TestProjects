@@ -1,0 +1,28 @@
+.mainSpinner {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  .circle {
+    height: 80%;
+    width: 80%;
+    border: 5px dotted blueviolet;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotate 1000ms alternate 0s infinite forwards;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
