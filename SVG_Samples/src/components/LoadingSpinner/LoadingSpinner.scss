@@ -1,0 +1,21 @@
+.mainLoader {
+  height: 100px;
+  width: 100px;
+  background-color: transparent;
+  .wheel {
+    height: 60px;
+    width: 60px;
+    // border-radius: 50%;
+    background-color: white;
+    animation: bounce 1s ease-in-out 0s infinite alternate;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 100deg;
+  }
+}
