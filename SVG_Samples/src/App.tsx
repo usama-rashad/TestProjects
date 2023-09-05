@@ -1,55 +1,22 @@
+import { useState } from "react";
 import "./App.scss";
-import DataRow, { IDataChangePar } from "./components/DataRow/DataRow";
-import useStorageInfo from "./hooks/useStorageInfo";
+import Modal from "./components/Modal/Modal";
 
-// Hooks
+// Book images
+import Book1Image from "./assets/book1.jpg";
+import Book2Image from "./assets/book2.jpg";
+import Book3Image from "./assets/book3.jpg";
+import FileUploader from "./components/FileUploader/FileUploader";
 
 function App() {
-  const { array, push, remove, length, updateRow } = useStorageInfo([]);
+  const [modalOpen, setModalOpen] = useState<Boolean>(false);
 
-  const pushButtonAction = () => {
-    push({ serialnumber: length, aisle: "" });
+  const openModalAction = () => {
+    setModalOpen(true);
   };
-  const removeButtonAction = () => {
-    remove();
-  };
-  const updateButtonAction = () => {
-    updateRow({ serialnumber: 999, aisle: "1A" }, 2);
-  };
-  const onRowDataChange = (e: IDataChangePar, index: number) => {
-    updateRow({ serialnumber: e.serialNumber, aisle: e.aisle }, index);
-  };
-
   return (
     <div className="mainApp">
-      <div className="buttons">
-        <button onClick={pushButtonAction}>Push</button>
-        <button onClick={removeButtonAction}>Remove</button>
-        <button onClick={updateButtonAction}>Update</button>
-      </div>
-      <div className="list">
-        {array.map((row, index) => {
-          return (
-            <DataRow
-              initialValue={{ serialNumber: 1, aisle: "A" }}
-              index={index}
-              source={{ serialNumber: row.serialnumber, aisle: row.aisle }}
-              onDataChange={(e) => onRowDataChange(e, index)}
-            />
-          );
-        })}
-      </div>
-      <div className="dataDisplay">
-        <p>Data display</p>
-        {array.map((row, index) => {
-          return (
-            <div className="row">
-              <p>{row.serialnumber}</p>
-              <p>{row.aisle}</p>
-            </div>
-          );
-        })}
-      </div>
+      <FileUploader />
     </div>
   );
 }
