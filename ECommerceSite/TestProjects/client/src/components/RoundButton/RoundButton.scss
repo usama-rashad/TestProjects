@@ -1,0 +1,22 @@
+.mainRoundButton {
+  height: 85%;
+  width: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: inset 1px 1px 5px 5px white;
+  vertical-align: middle;
+  margin: 10px;
+  //   border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  background-image: radial-gradient(white 0%, lightgrey 10%);
+  box-shadow: 0px 0px 3px 3px rgba(255, 255, 255, 0.822);
+  svg {
+    fill: black;
+  }
+}

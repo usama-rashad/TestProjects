@@ -1,0 +1,16 @@
+.mainProgressBar {
+  height: 30px;
+  width: 100px;
+  .progress {
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+    width: 100px;
+  }
+  #bar {
+    height: 5px;
+    width: 100px;
+    background-color: green;
+    transition: 300ms ease-in width;
+  }
+}

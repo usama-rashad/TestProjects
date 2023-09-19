@@ -1,0 +1,74 @@
+.mainRippleEffect {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  .ripple1,
+  .ripple2,
+  .ripple3 {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+  .ripple1 {
+    background-color: rgb(0, 89, 255);
+    display: none;
+    &.startAnimation {
+      display: block;
+      animation: ripple1Animation 600ms ease 0s 1 forwards;
+    }
+  }
+  .ripple2 {
+    background-color: rgb(183, 0, 255);
+    display: none;
+
+    &.startAnimation {
+      animation: ripple2Animation 600ms ease 100ms 1 forwards;
+    }
+  }
+  .ripple3 {
+    background-color: rgb(255, 0, 200);
+    display: none;
+
+    &.startAnimation {
+      animation: ripple3Animation 600ms ease 200ms 1 forwards;
+    }
+  }
+}
+
+@keyframes ripple1Animation {
+  0% {
+    scale: 0;
+    opacity: 1;
+  }
+  100% {
+    scale: 1.1;
+    opacity: 0;
+  }
+}
+
+@keyframes ripple2Animation {
+  0% {
+    scale: 0;
+    opacity: 1;
+  }
+  100% {
+    scale: 1.08;
+    opacity: 0;
+  }
+}
+
+@keyframes ripple3Animation {
+  0% {
+    scale: 0;
+    opacity: 1;
+  }
+  100% {
+    scale: 1.06;
+    opacity: 0;
+  }
+}
