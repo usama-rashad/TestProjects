@@ -1,0 +1,30 @@
+.mainDataBlock {
+  height: 100px;
+  width: 100px;
+  padding: 3px;
+  border: 1px solid lightgrey;
+  margin: 0;
+  opacity: 1;
+  transition: background-color 500ms ease;
+  animation: fadeIn 1000ms ease-in 1ms 1 forwards;
+  cursor: pointer;
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
+  &:hover {
+    background-color: rgba(137, 43, 226, 0.247);
+  }
+  .id {
+    font-weight: 500;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

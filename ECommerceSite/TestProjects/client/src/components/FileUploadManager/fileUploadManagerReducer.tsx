@@ -13,6 +13,7 @@ interface IAxiosFileUploadResponse {
 
 interface IFileUploadThunk {
   url: string;
+  path: string;
   formData: FormData;
 }
 
@@ -20,7 +21,7 @@ const initialStatus: IFileUploadManagerStatus = { status: "ready", message: "" }
 
 export const uploadFileThunk = createAsyncThunk(
   "uploadFile",
-  async ({ url, formData }: IFileUploadThunk, { rejectWithValue, fulfillWithValue }) => {
+  async ({ url, formData, path }: IFileUploadThunk, { rejectWithValue, fulfillWithValue }) => {
     try {
       let response = await axios.post(url, formData);
       return fulfillWithValue(response.data);

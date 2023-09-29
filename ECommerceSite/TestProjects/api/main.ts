@@ -45,9 +45,9 @@ const updateFileUploadStatus = (fileName: string, uploadPct: number, state: TFil
 };
 
 // Upload single file promise
-const uploadSingleFile = (file: Express.Multer.File, storage: FirebaseStorage) => {
+const uploadSingleFile = (file: Express.Multer.File, storage: FirebaseStorage, path: string) => {
   return new Promise((res, rej) => {
-    const fileReference = ref(storage, `public/${file.originalname}`);
+    const fileReference = ref(storage, `${path}${file.originalname}`);
     let uploadTask = uploadBytesResumable(fileReference, file.buffer, {
       customMetadata: { filename: file.originalname, createdData: new Date().toDateString() },
     }).on(
@@ -76,13 +76,13 @@ const uploadSingleFile = (file: Express.Multer.File, storage: FirebaseStorage) =
 };
 
 // Store list of files on Firebase Storage
-const uploadFiles = async (files: Express.Multer.File[], storage: FirebaseStorage) => {
+const uploadFiles = async (files: Express.Multer.File[], storage: FirebaseStorage, path: string) => {
   // Reset the status
   fileUploadStatus = [];
   // Loop through all the files and create an upload task for each file
   let uploadTasks = [];
   for (let index = 0; index < files.length; index++) {
-    uploadTasks[index] = uploadSingleFile(files[index], storage);
+    uploadTasks[index] = uploadSingleFile(files[index], storage, path);
   }
   return Promise.all(uploadTasks);
 };
@@ -102,10 +102,14 @@ app.post("/newFilesSelected", (request, response, next) => {
   }
 });
 app.post("/fileUpload", uploadMW, async (request, response, next) => {
+  let { path } = request.body;
+  if (!path || path === "") {
+    return response.status(404).json({ message: "Folder path not specified.", error: "Incomplete information." });
+  }
   if (request.files) {
     let files = request["files"] as unknown as Express.Multer.File[];
     try {
-      uploadFiles(files, storage).then((uploadResults) => {
+      uploadFiles(files, storage, path).then((uploadResults) => {
         return response.status(200).json({ message: "All files uploaded successfully.", info: uploadResults });
       });
     } catch (error) {
@@ -116,6 +120,9 @@ app.post("/fileUpload", uploadMW, async (request, response, next) => {
   }
 });
 app.get("/fileUploadStatus", (request, response, next) => {
+  return response.status(200).json({ fileStatus: fileUploadStatus, error: "No error." });
+});
+app.post("/pauseFileUpload", (request, response, next) => {
   return response.status(200).json({ fileStatus: fileUploadStatus, error: "No error." });
 });
 

@@ -112,7 +112,7 @@ function FileUploadManager(props: IFileUploadManagerProps) {
         }
         break;
     }
-    dispatch(uploadFileThunk({ url: props.apiURL, formData: formData }));
+    dispatch(uploadFileThunk({ url: props.apiURL, formData: formData, path: "public/" }));
 
     // Keep checking the file status
     intervalID = setInterval(() => {

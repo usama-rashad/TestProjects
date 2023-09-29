@@ -1,37 +1,71 @@
-import React from "react";
 import "./App.scss";
-import InfiniteScroll from "./components/InfiniteScroll/InfiniteScroll";
-import PixelMap from "./components/PixelMap/PixelMap";
+
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { IRawData } from "./data";
+
+// Hooks
+import { useAppDispatch } from "./store";
+import { fetchScrollSegmentThunk } from "./reducers/fetchScrollData";
+import { useFetchScroll } from "./hooks/useFetchScroll";
+
+// Components
+import DataBlock from "./components/DataBlock/DataBlock";
+import InfoBar from "./components/InfoBar/InfoBar";
 
 function App() {
-  const { scrollTop, clientHeight, scrollHeight, progressPct, positionState } = InfiniteScroll();
+  const dispatch = useAppDispatch();
+  const { busy, isEnd, segmentData, segmentStart, segmentEnd, segmentLength } = useFetchScroll();
+  const [scrollTop, setScrollTop] = useState(0);
+  const [scrollHeight, setScrollHeight] = useState(0);
+  const [clientHeight, setClientHeight] = useState(0);
+  const [progressPct, setProgressPct] = useState(0);
+  const [fetch, setFetch] = useState<boolean>(true);
+  useEffect(() => {
+    // Get initial set of data.
+    dispatch(fetchScrollSegmentThunk({ segmentLength: 80 }));
+  }, []);
+
+  useEffect(() => {
+    if (progressPct > 60 && !busy && !isEnd) {
+      setFetch(true);
+    }
+    if (fetch) {
+      dispatch(fetchScrollSegmentThunk({ segmentLength: 80 }));
+      setFetch(false);
+    }
+  }, [progressPct]);
+
+  // Determine content size
+  const updateValues = () => {
+    setScrollTop(document.documentElement.scrollTop);
+    setScrollHeight(document.documentElement.scrollHeight);
+    setClientHeight(document.documentElement.clientHeight);
+    let progressPct = Math.round((scrollTop / (scrollHeight - clientHeight)) * 100.0);
+    setProgressPct(progressPct);
+  };
+
+  const onScroll = () => {
+    updateValues();
+  };
+
+  React.useLayoutEffect(() => {
+    document.addEventListener("scroll", onScroll);
+    // Initial load
+    updateValues();
+    return () => {
+      document.removeEventListener("scroll", onScroll);
+    };
+  });
+
   return (
     <div className="mainApp">
-      <div className="infoBar">
-        <div
-          className="progressBar"
-          style={{ width: `${progressPct}%`, backgroundColor: `hsla(${(progressPct / 100.0) * 360.0},100%,50%,1.0)` }}
-        ></div>
-        <div className="data">
-          <p>Scroll top {scrollTop}</p>
-          <p>Scroll height {scrollHeight}</p>
-          <p>Client height {clientHeight}</p>
-          <p>Progress {progressPct}%</p>
-        </div>
-        <div className="indicators">
-          {positionState === 0 ? (
-            <div className="topOfPage">
-              <p>Top</p>
-            </div>
-          ) : null}
-          {positionState === 2 ? (
-            <div className="bottomOfPage">
-              <p>Bottom</p>
-            </div>
-          ) : null}
-        </div>
+      <InfoBar />
+      <div className="content">
+        {segmentData?.map((block, index) => {
+          return <DataBlock key={index} data={block} index={index} />;
+        })}
       </div>
-      <PixelMap verticalCount={10} horizontalCount={10} />
     </div>
   );
 }

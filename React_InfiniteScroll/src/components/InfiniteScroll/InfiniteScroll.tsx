@@ -10,14 +10,15 @@ function InfiniteScroll() {
   const [scrollTop, setScrollTop] = useState(0);
   const [scrollHeight, setScrollHeight] = useState(0);
   const [clientHeight, setClientHeight] = useState(0);
-  const [progressPct, setProgressPct] = useState(45);
+  const [progressPct, setProgressPct] = useState(0);
   const [positionState, setPositionState] = useState(0);
 
   const onScroll = () => {
     setScrollTop(document.documentElement.scrollTop);
     setScrollHeight(document.documentElement.scrollHeight);
     setClientHeight(document.documentElement.clientHeight);
-    setProgressPct(Math.round((scrollTop / (scrollHeight - clientHeight)) * 100.0));
+    let progressPct = Math.round((scrollTop / (scrollHeight - clientHeight)) * 100.0);
+    setProgressPct(progressPct);
     setPositionState(checkPositionState(progressPct));
   };
 

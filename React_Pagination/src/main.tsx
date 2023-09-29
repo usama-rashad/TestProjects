@@ -2,12 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.scss";
-import NavbarProvider from "./Contexts/NavbarProvider.tsx";
+import { Provider } from "react-redux";
+import { rootStore } from "./store.ts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  // <React.StrictMode>
-  <NavbarProvider>
+  <Provider store={rootStore}>
     <App />
-  </NavbarProvider>
-  // </React.StrictMode>
+  </Provider>
 );
