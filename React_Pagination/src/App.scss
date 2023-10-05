@@ -1,9 +1,13 @@
 .mainApp {
-  background-color: black;
+  background-color: darkslateblue;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  h3 {
+    color: white;
+    text-align: center;
+  }
 }

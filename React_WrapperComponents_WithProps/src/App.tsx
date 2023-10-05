@@ -3,15 +3,16 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.scss";
 
-import data from "./Components/App/data";
-import AnimalCard from "./Components/AnimalCard/AnimalCard";
+import { BookData } from "./Components/App/BookData";
+import { DrugData } from "./Components/App/DrugData";
+import DataRow from "./Components/DataRow/DataRow";
+import Paginate from "./Components/Paginate/Paginate";
 
 function App() {
   return (
     <div className="mainApp">
-      {data.map((animal) => {
-        return <AnimalCard {...animal} />;
-      })}
+      <Paginate dataSource={BookData} renderItem={(item) => <DataRow data={item} />} />
+      <Paginate dataSource={DrugData} renderItem={(item) => <DataRow data={item} />} />
     </div>
   );
 }
