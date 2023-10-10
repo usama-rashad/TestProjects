@@ -1,25 +1,25 @@
 import "./App.scss";
-import DataColumn from "./Components/DataColumn/DataColumn";
-import DataRow from "./Components/DataRow/DataRow";
+import CarsComponent, { CarData, CarProps } from "./Components/Items/CarsComponent/CarsComponent";
+import PhonesComponent, { PhoneData } from "./Components/Items/PhonesComponent/PhonesComponent";
 import Paginate from "./Components/Paginate/Paginate";
 
-const listOfNumberData: number[][] = [
-  [1, 2, 3, 4],
-  [5, 6, 7, 8],
-  [9, 10, 11, 12],
+const carsData: CarData[] = [
+  { make: "Mercedes", model: 2020, mileage: 1000 },
+  { make: "Bugatti", model: 2020, mileage: 650 },
+  { make: "Ferrari", model: 2021, mileage: 22000 },
 ];
-
-const listOfLetterData: string[][] = [
-  ["a", "b", "c", "d"],
-  ["e", "f", "g", "h"],
-  ["i", "j", "k", "l"],
+const phoneData: PhoneData[] = [
+  { make: "Samsung", model: "Galaxy S21", color: "red", screenSize: "6" },
+  { make: "Sony", model: "Xperia Z", color: "black", screenSize: "5.5" },
+  { make: "Oppo", model: "Reno 10", color: "aqua", screenSize: "6.6" },
+  { make: "Asus", model: "Zenphone 6", color: "metallic blue", screenSize: "6.7" },
 ];
 
 function App() {
   return (
     <div className="mainApp">
       <h3>Paginate</h3>
-      <Paginate<string> dataSource={listOfLetterData} renderRow={DataColumn} />
+      <Paginate<CarProps> dataSource={carsData} rowRenderItem={CarsComponent} />
     </div>
   );
 }

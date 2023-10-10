@@ -1,18 +1,17 @@
-import DataRow, { DataRowProps } from "../DataRow/DataRow";
 import "./Paginate.scss";
 
-import React from "react";
+import React, { ReactNode } from "react";
 
 export type PaginateProps<T> = {
-  dataSource: T[][];
-  renderRow: ({ values }: DataRowProps<T>) => React.ReactNode;
+  dataSource: T[];
+  rowRenderItem: (key: number, item: T) => ReactNode;
 };
 
-function Paginate<T>({ dataSource, renderRow }: PaginateProps<T>) {
+function Paginate<T>({ dataSource, rowRenderItem }: PaginateProps<T>) {
   return (
     <div className="paginate">
-      {dataSource.map((dataRow, index) => {
-        return renderRow({ index: index, values: dataRow });
+      {dataSource.map((item, index) => {
+        return rowRenderItem(index, item);
       })}
     </div>
   );
