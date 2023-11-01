@@ -1,0 +1,28 @@
+body {
+  margin: 0px;
+}
+
+* {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(142, 133, 201);
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(72, 64, 122);
+}

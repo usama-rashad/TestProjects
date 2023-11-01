@@ -1,0 +1,25 @@
+.dataContextConsumer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  .topBlank {
+    height: 50px;
+  }
+  h3 {
+    color: white;
+  }
+  p {
+    color: white;
+  }
+  .data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 100%;
+    width: 100%;
+  }
+}

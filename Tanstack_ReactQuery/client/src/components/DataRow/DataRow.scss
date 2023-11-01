@@ -1,0 +1,33 @@
+.dataRow {
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 15px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  height: 30px;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  animation: fadein 200ms ease-in 0s 1 forwards;
+  p {
+    color: black;
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+    user-select: none;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

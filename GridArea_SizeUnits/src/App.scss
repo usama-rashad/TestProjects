@@ -1,0 +1,64 @@
+@import "./colors.scss";
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+
+  .left {
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 9;
+    background-color: $navbarColor;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .right {
+    grid-column: 3 / span 10;
+    grid-row: 3 / span 9;
+    background-color: $contentColor;
+  }
+  .top {
+    grid-column: 1 / span 12;
+    grid-row: 1 / span 2;
+    background-color: $titleColor;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    #appIcon {
+      width: 4rem;
+      height: auto;
+    }
+    #appTitle {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: white;
+    }
+  }
+  .bottom {
+    grid-column: 1 / span 12;
+    grid-row: 12 / span 1;
+    background-color: $bottomColor;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .app {
+    .left {
+      grid-column: 1 / span 12;
+      grid-row: 3 / span 1;
+      background-color: $navbarColor;
+    }
+    .right {
+      grid-column: 1 / span 12;
+      grid-row: 4 / span 10;
+      background-color: $contentColor;
+    }
+  }
+}

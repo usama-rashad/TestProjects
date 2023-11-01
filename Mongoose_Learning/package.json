@@ -1,0 +1,25 @@
+{
+  "name": "mongoose_learning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon --esm main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.6.3",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.8.8",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
