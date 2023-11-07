@@ -82,7 +82,7 @@ function App() {
   }, [data]);
 
   const focusLastRow = () => {
-    let listOfRows = document.getElementsByClassName("dataRow");
+    let listOfRows = document.getElementsByClassName("dataRow table1");
     let rowCount = listOfRows.length;
     listOfRows[rowCount - 1].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   };
@@ -113,7 +113,7 @@ function App() {
         {!isFetching && (
           <div className="dataDisplay">
             {data?.data.data.map((user: User, index: number) => {
-              return <DataRow<User> key={index} data={user} index={index} />;
+              return <DataRow<User> key={index} data={user} index={index} rowHash="table1" />;
             })}
           </div>
         )}
